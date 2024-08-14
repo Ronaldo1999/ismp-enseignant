@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gescol": {
+    "enseignant": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -82,10 +82,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gescol:build:production"
+              "browserTarget": "enseignant:build:production"
             },
             "development": {
-              "browserTarget": "gescol:build:development"
+              "browserTarget": "enseignant:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gescol:build"
+            "browserTarget": "enseignant:build"
           }
         },
         "test": {

@@ -2,12 +2,8 @@
     <section id="minimal-statistics">
         <div class="row">
             <div class="col-12 mt-3 mb-1">
-                <h2 class="text-uppercase pa">{{'welcomeMr'|translate}}<span
-                        style="font-weight: 600; text-transform: uppercase"><span style="color: brown;">{{ user.name
-                            }}</span></span></h2>
-                <p class="presd">
-                    {{'canHelpYou'|translate}}
-                </p>
+                <h2 class="text-uppercase pa">{{'welcomeMr'|translate}}<span style="font-weight: 600; text-transform: uppercase"><span style="color: brown;">{{ user.name }}</span></span></h2>
+                <p class="presd"> {{'canHelpYou'|translate}} </p>
             </div>
         </div>
         <div class="row">
@@ -17,16 +13,9 @@
                         <div class="card-body">
                             <div class="media-body text-left">
                                 <i class="fa-solid fa-clock" style="height: 25px; width: 25px;"></i>
-                                <span class="font-weight-bold" style="font-size: 23px">
-                                    {{'myLastCoursProgramme'|translate}}&nbsp;&nbsp;
-                                </span>
-                                <i pTooltip="Actualiser" tooltipPosition="top" (click)="courssListByEnseignant()"
-                                    class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
-
-                                <i class="fas fa-external-link-square-alt er" pTooltip="{{'goto'|translate}}"
-                                    tooltipPosition="left" routerLink="devoirs" (click)="toggleStatus('devoirs')"
-                                    style="height: 15px; width: 15px; float: right;"></i>
-
+                                <span class="font-weight-bold" style="font-size: 23px"> {{'myLastCoursProgramme'|translate}}&nbsp;&nbsp; </span>
+                                <i pTooltip="Actualiser" tooltipPosition="top" (click)="courssListByEnseignant()" class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
+                                <i class="fas fa-external-link-square-alt er" pTooltip="{{'goto'|translate}}" tooltipPosition="left" routerLink="devoirs" (click)="toggleStatus('devoirs')" style="height: 15px; width: 15px; float: right;"></i>
                                 <div class="skeleton" *ngIf="chargCours">
                                     <div class="skeleton-left">
                                         <div class="line h17 w40 m10"></div>
@@ -40,37 +29,26 @@
                                 </div>
                                 <div class="row" *ngIf="!chargCours" style="margin: 2px;margin-top: 3%;">
                                     <div class="card" *ngFor="let item of cours" style="margin-top: 2px;">
-                                        <div class="row" style="padding: 8px; margin-top: 2px;">
+                                        <div class="row align-items-center" style="padding: 8px; margin-top: 2px;">
                                             <div class="col-9">
-                                                <i class="fa-solid fa-clock"
-                                                    style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;
+                                                <i class="fa-solid fa-clock" style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;
                                                 <span>{{item.libelleFr}}</span>
                                             </div>
                                             <div class="col-3">
-                                                <span
-                                                    style="font-size: 13px; font-weight: 600; float: right;">{{item.datejour|date:'longDate'}}</span>
+                                                <span style="font-size: 13px; font-weight: 600; float: right;">{{item.datejour|date:'longDate'}}</span>
                                             </div>
-                                            <!-- <div class="col-1">
-                                                <i pTooltip="{{'detailOnCourse'|translate}}" tooltipPosition="top"
-                                                    class="fa fa-info-circle er" (click)="getDetailCours(item)"
-                                                    style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>
-                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
-                                <div *ngIf="!cours.length && !chargCours" class="row"
-                                    style="padding: 8px; margin-top: 2px;">
+                                <div *ngIf="!cours.length && !chargCours" class="row" style="padding: 8px; margin-top: 2px;">
                                     <span class="text-center">
-                                        <i class="fas fa-exclamation-triangle"
-                                            style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span
-                                            style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
+                                        <i class="fas fa-exclamation-triangle" style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
                                     </span>
                                 </div>
                             </div>
 
                             <div class="progress mt-1 mb-0" style="height: 9px">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"
-                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
@@ -83,15 +61,9 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <i class="fas fa-file-alt" style="height: 25px; width: 25px;"></i>
-                                    <span class="font-weight-bold" style="font-size: 23px">
-                                        {{'myLastRessource'|translate}}&nbsp;&nbsp;
-                                    </span>
-                                    <i pTooltip="Actualiser" tooltipPosition="top" (click)="ressourceListByEnseignant()"
-                                        class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
-
-                                    <i class="fas fa-external-link-square-alt er" pTooltip="{{'goto'|translate}}"
-                                        tooltipPosition="left" routerLink="devoirs" (click)="toggleStatus('devoirs')"
-                                        style="height: 15px; width: 15px; float: right;"></i>
+                                    <span class="font-weight-bold" style="font-size: 23px"> {{'myLastRessource'|translate}}&nbsp;&nbsp; </span>
+                                    <i pTooltip="Actualiser" tooltipPosition="top" (click)="ressourceListByEnseignant()" class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
+                                    <i class="fas fa-external-link-square-alt er" pTooltip="{{'goto'|translate}}" tooltipPosition="left" routerLink="devoirs" (click)="toggleStatus('devoirs')" style="height: 15px; width: 15px; float: right;"></i>
                                     <div class="skeleton" *ngIf="chargRes">
                                         <div class="skeleton-left">
                                             <div class="line h17 w40 m10"></div>
@@ -105,20 +77,16 @@
                                     </div>
                                     <div class="row" *ngIf="!chargRes" style="margin: 2px;margin-top: 3%;">
                                         <div class="card" *ngFor="let item of ressources" style="margin-top: 2px;">
-                                            <div class="row" style="padding: 8px; margin-top: 2px;align-items: center;">
-                                                <div class="col-3">
-                                                    <i class="fas fa-file-alt"
-                                                        style="height: 20px; width: 20px;color: rgb(1, 46, 91);"></i>&nbsp;
-                                                    <span
-                                                        style="font-size: 12px;font-weight: bold; color: rgb(1, 46, 91);">{{item.typeressouce}}</span>
+                                            <div class="row align-items-center" style="padding: 8px; margin-top: 2px;align-items: center;">
+                                                <div class="col-4">
+                                                    <i class="fas fa-file-alt" style="height: 20px; width: 20px;color: rgb(1, 46, 91);"></i>&nbsp;
+                                                    <span style="font-size: 12px;font-weight: bold; color: rgb(1, 46, 91);">{{item.typeressouce}}</span>
                                                 </div>
-                                                <div class="col-7">
-                                                    <span
-                                                        style="font-size: 13px; font-weight: 600;">{{item.libelleFr}}</span>
+                                                <div class="col-6">
+                                                    <span style="font-size: 13px; font-weight: 600;">{{item.libelleFr}}</span>
                                                 </div>
                                                 <div class="col-2">
-                                                    <span
-                                                        style="font-size: 13px; font-weight: 600; float: right;">{{item.created_at|date:'longDate'}}</span>
+                                                    <span style="font-size: 10px; font-weight: 600; float: right;">{{item.created_at|date:'longDate'}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -153,22 +121,8 @@
                                     <span class="font-weight-bold" style="font-size: 23px">
                                         {{'myLastNote'|translate}}&nbsp;&nbsp;
                                     </span>
-                                    <i pTooltip="Actualiser" tooltipPosition="top"
-                                        (click)="noteNonVaideListByEnseignant()" class="fas fa-redo-alt er"
-                                        style="height: 15px; width: 15px;"></i>
-
-                                    <i class="fas fa-external-link-square-alt er"
-                                        (click)="toggleStatus('notation-individuelles')" pTooltip="{{'goto'|translate}}"
-                                        tooltipPosition="left" routerLink="notation-individuelles"
-                                        style="height: 15px; width: 15px; float: right;"></i>
-
-                                    <!-- <div *ngIf="chargUe" style="margin-top: 3%;">
-                                        <div class="spinner-container">
-                                            <div class="spinner"></div>
-                                            &nbsp;<span style="color: rgb(1, 46, 91); font-style: italic;">{{
-                                                'Chargement'|translate }}</span>
-                                        </div>
-                                    </div> -->
+                                    <i pTooltip="Actualiser" tooltipPosition="top" (click)="noteNonVaideListByEnseignant()" class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
+                                    <i class="fas fa-external-link-square-alt er" (click)="toggleStatus('notation-individuelles')" pTooltip="{{'goto'|translate}}" tooltipPosition="left" routerLink="notation-individuelles" style="height: 15px; width: 15px; float: right;"></i>
                                     <div class="skeleton" *ngIf="chargUe">
                                         <div class="skeleton-left">
                                             <div class="line h17 w40 m10"></div>
@@ -182,33 +136,24 @@
                                     </div>
                                     <div class="row" *ngIf="!chargUe" style="margin: 2px; margin-top: 3%;">
                                         <div class="card" *ngFor="let item of notes" style="margin-top: 2px;">
-                                            <div *ngIf="notes.length!=0" class="row"
-                                                style="padding: 8px; margin-top: 2px;align-items: center;">
+                                            <div *ngIf="notes.length!=0" class="row align-items-center" style="padding: 8px; margin-top: 2px;align-items: center;">
                                                 <div class="col-12">
-                                                    <i class="fa fa-copy"
-                                                        style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;
-                                                    <span
-                                                        style="color: rgb(1, 46, 91);">{{item.codeu}}&nbsp;-&nbsp;{{item.nomue}}</span>
-                                                    <span
-                                                        style="font-weight: 800; color: rgb(1, 46, 91);">&nbsp;({{item.nomsession}})
-                                                    </span>
+                                                    <i class="fa fa-copy" style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;
+                                                    <span style="color: rgb(1, 46, 91);">{{item.codeu}}&nbsp;-&nbsp;{{item.nomue}}</span>
+                                                    <span style="font-weight: 800; color: rgb(1, 46, 91);">&nbsp;({{item.nomsession}}) </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div *ngIf="!notes.length && !chargUe" class="row"
-                                        style="padding: 8px; margin-top: 2px;">
+                                    <div *ngIf="!notes.length && !chargUe" class="row" style="padding: 8px; margin-top: 2px;">
                                         <span class="text-center">
-                                            <i class="fas fa-exclamation-triangle"
-                                                style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span
-                                                style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
+                                            <i class="fas fa-exclamation-triangle" style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="progress mt-1 mb-0" style="height: 9px">
-                                <div class="progress-bar prog" role="progressbar" style="width: 100%" aria-valuenow="5"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar prog" role="progressbar" style="width: 100%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
@@ -221,23 +166,10 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <i class="fas fa-percentage" style="height: 25px; width: 25px;"></i>
-                                    <span class="font-weight-bold" style="font-size: 23px">
-                                        {{'myTauxAssiduite'|translate}}&nbsp;&nbsp;
-                                    </span>
-                                    <i pTooltip="Actualiser" tooltipPosition="top"
-                                        (click)="tauxAssiduiteByCoursByEnseignant()" class="fas fa-redo-alt er"
-                                        style="height: 15px; width: 15px;"></i>
-                                    <i class="fas fa-external-link-square-alt er" (click)="toggleStatus('assiduite')"
-                                        pTooltip="{{'goto'|translate}}" tooltipPosition="top" routerLink="assiduite"
-                                        style="height: 15px; width: 15px; float: right;"></i>
+                                    <span class="font-weight-bold" style="font-size: 23px"> {{'myTauxAssiduite'|translate}}&nbsp;&nbsp; </span>
+                                    <i pTooltip="Actualiser" tooltipPosition="top" (click)="tauxAssiduiteByCoursByEnseignant()" class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
+                                    <i class="fas fa-external-link-square-alt er" (click)="toggleStatus('assiduite')" pTooltip="{{'goto'|translate}}" tooltipPosition="top" routerLink="assiduite" style="height: 15px; width: 15px; float: right;"></i>
 
-                                    <!-- <div *ngIf="chargAs" style="margin-top: 3%;">
-                                        <div class="spinner-container">
-                                            <div class="spinner"></div>
-                                            &nbsp;<span style="color: rgb(1, 46, 91); font-style: italic;">{{
-                                                'Chargement'|translate }}</span>
-                                        </div>
-                                    </div> -->
                                     <div class="skeleton" *ngIf="chargAs">
                                         <div class="skeleton-left">
                                             <div class="line h17 w40 m10"></div>
@@ -245,45 +177,29 @@
                                             <div class="line h8 w50"></div>
                                             <div class="line  w75"></div>
                                         </div>
-                                        <div class="skeleton-right">
-                                            <div class="square"></div>
-                                        </div>
+                                        <div class="skeleton-right"> <div class="square"></div> </div>
                                     </div>
                                     <div class="row" *ngIf="!chargAs" style="margin: 2px; margin-top: 3%;">
                                         <div class="card" *ngFor="let item of assiduites">
-                                            <div *ngIf="assiduites.length" class="row"
-                                                style="padding: 8px; margin-top: 2px;align-items: center;">
+                                            <div *ngIf="assiduites.length" class="row align-items-center" style="padding: 8px; margin-top: 2px;align-items: center;">
                                                 <div class="col-6">
-                                                    <i class="fa fa-check-square"
-                                                        style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;
+                                                    <i class="fa fa-check-square" style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;
                                                     <span>{{item.libelleFr}}</span>
                                                 </div>
-                                                <div class="col-3">
-                                                    <span
-                                                        style="font-size: 13px; font-weight: 600;">{{item.datejour|date:'longDate'}}</span>
-                                                </div>
-                                                <div class="col-3">
-                                                    <span
-                                                        style="font-size: 15px; font-weight: 600; color: brown; border-radius: 10px; background-color: bisque; padding: 10px;">{{item.taux_assiduite+'
-                                                        %'}}</span>
-                                                </div>
+                                                <div class="col-3"> <span style="font-size: 13px; font-weight: 600;">{{item.datejour|date:'longDate'}}</span> </div>
+                                                <div class="col-3"> <span style="font-size: 15px; font-weight: 600; color: brown; border-radius: 10px; background-color: bisque; padding: 10px;">{{item.taux_assiduite+' %'}}</span> </div>
                                             </div>
-
                                         </div>
                                     </div>
-                                    <div *ngIf="!assiduites.length && !chargAs" class="row"
-                                        style="padding: 8px; margin-top: 2px;">
+                                    <div *ngIf="!assiduites.length && !chargAs" class="row" style="padding: 8px; margin-top: 2px;">
                                         <span class="text-center">
-                                            <i class="fas fa-exclamation-triangle"
-                                                style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span
-                                                style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
+                                            <i class="fas fa-exclamation-triangle" style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="progress mt-1 mb-0" style="height: 9px">
-                                <div class="progress-bar prog" role="progressbar" style="width: 100%" aria-valuenow="5"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar prog" role="progressbar" style="width: 100%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
@@ -291,7 +207,6 @@
             </div>
         </div>
         <div class="row">
-
             <div class="col-xl-6 col-sm-6 col-12">
                 <div class="card shadow ele border-0">
                     <div class="card-content">
@@ -299,24 +214,10 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <i class="fas fa-laptop-house" style="font-size: 23px"></i>
-                                    <span class="font-weight-bold" style="font-size: 23px">
-                                        {{'audihomeworks'|translate}}&nbsp;&nbsp;
-                                    </span>
-                                    <i pTooltip="Actualiser" tooltipPosition="top" (click)="audihomeworksByEnseignant()"
-                                        class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
-
-                                    <i class="fas fa-external-link-square-alt er" pTooltip="{{'goto'|translate}}"
-                                        tooltipPosition="left" routerLink="audihomeworks"
-                                        (click)="toggleStatus('audihomeworks')"
-                                        style="height: 15px; width: 15px; float: right;"></i>
-
-                                    <!-- <div *ngIf="chargHaudi" style="margin-top: 3%;">
-                                        <div class="spinner-container">
-                                            <div class="spinner"></div>
-                                            &nbsp;<span style="color: rgb(1, 46, 91); font-style: italic;">{{
-                                                'Chargement'|translate }}</span>
-                                        </div>
-                                    </div> -->
+                                    <span class="font-weight-bold" style="font-size: 23px"> {{'audihomeworks'|translate}}&nbsp;&nbsp; </span>
+                                    <i pTooltip="Actualiser" tooltipPosition="top" (click)="audihomeworksByEnseignant()" class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
+                                    <i class="fas fa-external-link-square-alt er" pTooltip="{{'goto'|translate}}" tooltipPosition="left" routerLink="audihomeworks" (click)="toggleStatus('audihomeworks')" style="height: 15px; width: 15px; float: right;"></i>
+                                    
                                     <div class="skeleton" *ngIf="chargHaudi">
                                         <div class="skeleton-left">
                                             <div class="line h17 w40 m10"></div>
@@ -330,37 +231,29 @@
                                     </div>
                                     <div class="row" *ngIf="!chargHaudi" style="margin: 2px;margin-top: 3%;">
                                         <div class="card" *ngFor="let item of audihomeworks" style="margin-top: 2px;">
-                                            <div class="row" style="padding: 8px; margin-top: 2px;align-items: center;">
+                                            <div class="row align-items-center" style="padding: 8px; margin-top: 2px;align-items: center;">
                                                 <div class="col-3">
-                                                    <i class="fas fa-file-alt"
-                                                        style="height: 20px; width: 20px;color: rgb(1, 46, 91);"></i>&nbsp;
-                                                    <span
-                                                        style="font-size: 12px;font-weight: bold; color: rgb(1, 46, 91);">{{item.typeressouce}}</span>
+                                                    <i class="fas fa-file-alt" style="height: 20px; width: 20px;color: rgb(1, 46, 91);"></i>&nbsp;
+                                                    <span style="font-size: 12px;font-weight: bold; color: rgb(1, 46, 91);">{{item.typeressouce}}</span>
                                                 </div>
                                                 <div class="col-7">
-                                                    <span
-                                                        style="font-size: 13px; font-weight: 600;">{{item.libelleFr}}</span>
+                                                    <span style="font-size: 13px; font-weight: 600;">{{item.libelleFr}}</span>
                                                 </div>
                                                 <div class="col-2">
-                                                    <span
-                                                        style="font-size: 13px; font-weight: 600; float: right;">{{item.created_at|date:'longDate'}}</span>
+                                                    <span style="font-size: 13px; font-weight: 600; float: right;">{{item.created_at|date:'longDate'}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div *ngIf="!audihomeworks.length && !chargHaudi" class="row"
-                                        style="padding: 8px; margin-top: 2px;">
+                                    <div *ngIf="!audihomeworks.length && !chargHaudi" class="row" style="padding: 8px; margin-top: 2px;">
                                         <span class="text-center">
-                                            <i class="fas fa-exclamation-triangle"
-                                                style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span
-                                                style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
+                                            <i class="fas fa-exclamation-triangle" style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="progress mt-1 mb-0" style="height: 9px">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"
-                                    aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
@@ -373,24 +266,9 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <i class="fas fa-chalkboard-teacher" style="height: 25px; width: 25px;"></i>
-                                    <span class="font-weight-bold" style="font-size: 23px">
-                                        {{'mySoutenance'|translate}}&nbsp;&nbsp;
-                                    </span>
-                                    <i pTooltip="Actualiser" tooltipPosition="top" (click)="soutenanceByEnseignant()"
-                                        class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
-
-                                    <i class="fas fa-external-link-square-alt er" pTooltip="{{'goto'|translate}}"
-                                        tooltipPosition="left" routerLink="soutenances"
-                                        (click)="toggleStatus('soutenances')"
-                                        style="height: 15px; width: 15px; float: right;"></i>
-
-                                    <!--   <div *ngIf="chargSte" style="margin-top: 3%;">
-                                        <div class="spinner-container">
-                                            <div class="spinner"></div>
-                                            &nbsp;<span style="color: rgb(1, 46, 91); font-style: italic;">{{
-                                                'Chargement'|translate }}</span>
-                                        </div>
-                                    </div> -->
+                                    <span class="font-weight-bold" style="font-size: 23px"> {{'mySoutenance'|translate}}&nbsp;&nbsp; </span>
+                                    <i pTooltip="Actualiser" tooltipPosition="top" (click)="soutenanceByEnseignant()" class="fas fa-redo-alt er" style="height: 15px; width: 15px;"></i>
+                                    <i class="fas fa-external-link-square-alt er" pTooltip="{{'goto'|translate}}" tooltipPosition="left" routerLink="soutenances" (click)="toggleStatus('soutenances')" style="height: 15px; width: 15px; float: right;"></i>
                                     <div class="skeleton" *ngIf="chargSte">
                                         <div class="skeleton-left">
                                             <div class="line h17 w40 m10"></div>
@@ -398,39 +276,30 @@
                                             <div class="line h8 w50"></div>
                                             <div class="line  w75"></div>
                                         </div>
-                                        <div class="skeleton-right">
-                                            <div class="square"></div>
-                                        </div>
+                                        <div class="skeleton-right"> <div class="square"></div> </div>
                                     </div>
                                     <div class="row" *ngIf="!chargSte" style="margin: 2px;margin-top: 3%;">
                                         <div class="card" *ngFor="let item of soutenances" style="margin-top: 2px;">
-                                            <div class="row" style="padding: 8px; margin-top: 2px;align-items: center;">
+                                            <div class="row align-items-center" style="padding: 8px; margin-top: 2px;align-items: center;">
                                                 <div class="col-10">
-                                                    <i class="fas fa-chalkboard-teacher"
-                                                        style="height: 20px; width: 20px;color: rgb(1, 46, 91);"></i>&nbsp;
-                                                    <span
-                                                        style="font-size: 13px; font-weight: 600;">{{item.role}}</span>
+                                                    <i class="fas fa-chalkboard-teacher" style="height: 20px; width: 20px;color: rgb(1, 46, 91);"></i>&nbsp;
+                                                    <span style="font-size: 13px; font-weight: 600;">{{item.role}}</span>
                                                 </div>
                                                 <div class="col-2">
-                                                    <span
-                                                        style="font-size: 25px; font-weight: 600; float: right;color: brown">{{item.nbsoutenance}}</span>
+                                                    <span style="font-size: 25px; font-weight: 600; float: right;color: brown">{{item.nbsoutenance}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div *ngIf="!soutenances.length && !chargSte" class="row"
-                                        style="padding: 8px; margin-top: 2px;">
+                                    <div *ngIf="!soutenances.length && !chargSte" class="row" style="padding: 8px; margin-top: 2px;">
                                         <span class="text-center">
-                                            <i class="fas fa-exclamation-triangle"
-                                                style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span
-                                                style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
+                                            <i class="fas fa-exclamation-triangle" style="height: 20px; width: 20px; color: rgb(1, 46, 91);"></i>&nbsp;<span style="color: rgb(1, 46, 91);">{{'noting'|translate}}</span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="progress mt-1 mb-0" style="height: 9px">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"
-                                    aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
@@ -443,7 +312,6 @@
     [resizable]="false">
     <ng-template pTemplate="header">
         <span style="font-size: 22px;">{{ title | translate }}</span>
-        <!--  <span style="font-size: 14px; font-weight: 600; font-style: italic;">{{ libelleDel }}</span> -->
     </ng-template>
     <div class="modal-body">
         <div class="row">
@@ -455,9 +323,7 @@
     </div>
     <ng-template pTemplate="footer">
         <div class="row justify-content-center">
-            <button (click)="detailCoursDialog=false;" [style]="{ height: '35px' }" pButton pRipple type="button"
-                label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left"
-                class="p-button-secondary"></button>
+            <button (click)="detailCoursDialog=false;" [style]="{ height: '35px' }" pButton pRipple type="button" label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left" class="p-button-secondary"></button>
         </div>
     </ng-template>
 </p-dialog>
@@ -465,7 +331,6 @@
 <p-dialog [(visible)]="messageDialog" [modal]="true" [style]="{width: '450px'}" [draggable]="true" [resizable]="false">
     <ng-template pTemplate="header">
         <span style="font-size: 22px;">{{ title | translate }}</span>
-        <!--  <span style="font-size: 14px; font-weight: 600; font-style: italic;">{{ libelleDel }}</span> -->
     </ng-template>
     <div class="modal-body">
         <div class="row">
@@ -477,9 +342,7 @@
     </div>
     <ng-template pTemplate="footer">
         <div class="row justify-content-center">
-            <button (click)="messageDialog=false;" [style]="{ height: '35px' }" pButton pRipple type="button"
-                label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left"
-                class="p-button-secondary"></button>
+            <button (click)="messageDialog=false;" [style]="{ height: '35px' }" pButton pRipple type="button" label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left" class="p-button-secondary"></button>
         </div>
     </ng-template>
 </p-dialog>
