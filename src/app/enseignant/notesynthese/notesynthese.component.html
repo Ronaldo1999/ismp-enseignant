@@ -1,0 +1,190 @@
+<div class="bg-light">
+    <h4 class="display-6 d-flex justify-content-center text-primary"> {{ 'nsynth' | translate }} </h4>
+</div>
+<p-toolbar>
+    <ng-template pTemplate="left">
+        <div class="card info">
+            <div class="row">
+                <div class="col-1">
+                    <i class="fas fa-info-circle icoinfo"></i>
+                </div>
+                <div class="col-11">
+                    <span class="asavoir">{{ 'asavoir'|translate }}</span>&nbsp;
+                    <span class="msginfo">{{ 'msginfo'|translate }}&nbsp;</span>
+                    <span class="text-danger champ-obligatoire">(*)</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="right">
+        <div class="col d-flex justify-content-end">
+            <button (click)="generatePDF(auditeurs)" [disabled]="!auditeurs.length" [style]="{ height: '35px' }" pButton
+                pRipple type="button" label="{{ 'printList' | translate }}" icon="pi pi-print" iconPos="left"
+                class="p-button-secondary"></button>&nbsp;&nbsp;
+            <button (click)="reload()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Rafraichir' | translate }}" icon="pi pi-refresh" iconPos="left"
+                class="p-button-secondary"></button>
+        </div>
+    </ng-template>
+</p-toolbar>
+<div class="modal-body">
+    <div class="row mt-1">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="card cont bg-light">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label>{{ "periodea" | translate }}<span
+                                    class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                            <p-dropdown [ngClass]="{'grise-element': displaySpinner}"
+                                [(ngModel)]="notation.anneAccademiqueID" [style]="{ width: '100%', height: '40px' }"
+                                placeholder="{{ 'vspa' | translate }}" [showClear]="true" [options]="periodeAcademiques"
+                                optionLabel="nomperio" optionValue="id" [filter]="true" filterBy="nomperio"
+                                [showClear]="true" (onChange)="parcoursAcademiqueList(notation.anneAccademiqueID); ">
+                                <ng-template let-act pTemplate="item">
+                                    <div pTooltip="{{ act.nomperio }}" tooltipPosition="top"
+                                        (click)="parcoursAcademiqueList(act.id)">
+                                        <i class="fa fa-calendar"></i>&nbsp;
+                                        <span>{{act.anneedebut}} - {{act.anneefin}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label>{{ 'titPar' | translate }}<span
+                                class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                        <p-dropdown [ngClass]="{'grise-element': displaySpinner}"
+                            [(ngModel)]="notation.parcourAccademiqueID" [style]="{ width: '100%', height: '40px' }"
+                            placeholder="{{ 'vsps' | translate }}" [showClear]="true" [options]="parcoursAcademiques"
+                            optionLabel="nomparc" optionValue="id" [filter]="true" filterBy="nomparc" [showClear]="true"
+                            (onChange)="ueListByParEnseignant(notation.parcourAccademiqueID); regroupementListByParcourList(notation.parcourAccademiqueID)">
+                            <ng-template let-act pTemplate="item">
+                                <div pTooltip="{{ act.nomparc }}" tooltipPosition="top"
+                                    (click)="ueListByParEnseignant(act.id); regroupementListByParcourList(act.id)">
+                                    <i class="fa fa-database"></i>&nbsp; ({{act.codeparc}})
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                    <div class="col-3">
+                        <label>{{ "courue" | translate }}<span
+                                class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                        <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [(ngModel)]="notation.coursID"
+                            [style]="{ width: '100%', height: '40px' }" placeholder="{{ 'vsue' | translate }}"
+                            [showClear]="true" [options]="uniteEnseignements" optionLabel="nomue" optionValue="id"
+                            [filter]="true" filterBy="nomue" [showClear]="true"
+                            (onChange)="sessionListByCourid(notation.coursID); auditeursListDefinitive(notation.regroupementID);">
+                            <ng-template let-act pTemplate="item">
+                                <div pTooltip="{{ act.nomue }}" tooltipPosition="top"
+                                    (click)="sessionListByCourid(act.id); auditeursListDefinitive(notation.regroupementID);">
+                                    <i class="fa fa-sticky-note"></i>&nbsp; ({{act.codeu}})
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                    <div class="col-3">
+                        <label>{{ "Regroupement" | translate }}<span
+                                class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                        </label>
+                        <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [(ngModel)]="notation.regroupementID"
+                            [style]="{ width: '100%', height: '40px' }" placeholder="{{ 'vsur' | translate }}"
+                            [showClear]="true" [options]="regroupements" optionLabel="nomreg" optionValue="id"
+                            [filter]="true" filterBy="codereg, nomreg" [showClear]="true"
+                            (onChange)="auditeursListDefinitive(notation.regroupementID);">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item" (click)="auditeursListDefinitive(notation.regroupementID);">
+                                    <i class="fa fa-object-ungroup" aria-hidden="true"></i>
+                                    <span> {{ act.nomreg }} </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="spinner-container" *ngIf="displaySpinner">
+                    <div class="spinner"></div>
+                    &nbsp;<span style="color: rgb(1, 46, 91); font-style: italic;">{{
+                        'Chargement'|translate }}</span>
+                </div>
+                <div class="custom-scrollbar">
+                    <div class="scroll-content">
+                        <p-table [value]="auditeurs" #pg [rows]="50" [rowsPerPageOptions]="[10,25,50,100,125]"
+                            [paginator]="true" styleClass="p-datatable-sm p-datatable-gridlines"
+                            [globalFilterFields]="['libelle', ]" responsiveLayout="scroll" [rowHover]="true"
+                            dataKey="id" [scrollable]="true" scrollHeight="30vw"
+                            currentPageReportTemplate="Affichage de {first} à {last}  sur {totalRecords} entrées"
+                            [showCurrentPageReport]="true">
+                            <ng-template pTemplate="header">
+                                <tr class="texte">
+                                    <th colspan="1" style="width: 3%; text-align: center;"> N° </th>
+                                    <th colspan="1" style="width: 10%;text-align: center;"> {{ "Matricule"|translate }}
+                                    </th>
+                                    <th colspan="1" style="width: 33%;"> {{ 'namesurname' |translate }} </th>
+                                    <th colspan="1" style="width: 10%; text-align: center;"> {{ 'Long'|translate }}
+                                    </th>
+                                    <th colspan="1" style="width: 10%; text-align: center;"> {{ 'Individuelle'|translate
+                                        }}
+                                    </th>
+                                    <th colspan="1" style="width: 10%; text-align: center;"> {{ 'Examen'|translate }}
+                                    </th>
+                                    <th colspan="1" style="width: 10%; text-align: center;"> {{ 'npsc'|translate }}
+                                    </th>
+                                    <th colspan="1" style="width: 10%;text-align: center;"> {{ 'Décision'|translate }}
+                                    </th>
+                                    <th colspan="1" style="width: 5%;text-align: center;"><i class="fa fa-cog"></i></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-item let-i="rowIndex">
+                                <tr>
+                                    <td class="text-center text-primary font-weight-bold">{{i+1}}</td>
+                                    <td class="text-center lign"> {{item.matricule}}</td>
+                                    <td class="lign">{{item.nom}} - {{item.prenom}} </td>
+                                    <td class="text-center lign"> {{item.taflong}}</td>
+                                    <td class="text-center lign"> {{item.individuelle}}</td>
+                                    <td class="text-center lign"> {{item.examen}}</td>
+                                    <td class="text-center lign"> {{item.notepondere.toFixed(2)}}</td>
+                                    <td class="text-center">
+                                        <span *ngIf="item.commentaire!=''"
+                                            [ngClass]="{'rouge':item.commentaire=='AJOURNEE', 'vert':item.commentaire=='VALIDE'}">
+                                            {{item.commentaire}}</span>
+                                        <span *ngIf="item.commentaire==''" class="orange"> {{ 'noComment'|translate
+                                            }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <i class="far fa-id-card me" pTooltip="{{'tirerbulletin'|translate}}"
+                                            tooltipPosition="left" (click)="attestation(item)"></i>
+                                        <!-- (click)="generatePdf('AUDITEUR : '+item.id+' ==> \n Matricule : '+item.matricule+'\n Noms et prénom : '+item.nom+'-'+item.prenom+'\n Travail long :'+item.taflong+'\n Travail individuelle :'+item.individuelle+'\n Examen sur table :'+item.examen)"></i> -->
+                                        <!-- (click)="generateBulletinAuditeur('AUDITEUR : '+item.id+' ==> \n Matricule : '+item.matricule+'\n Noms et prénom : '+item.nom+'-'+item.prenom+'\n Travail long :'+item.taflong+'\n Travail individuelle :'+item.individuelle+'\n Examen sur table :'+item.examen)" -->
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="messageDialog" [modal]="true" [style]="{width: '450px'}" [draggable]="true" [resizable]="false">
+    <ng-template pTemplate="header">
+        <span style="font-size: 22px;">{{ title | translate }}</span>
+        <!--  <span style="font-size: 14px; font-weight: 600; font-style: italic;">{{ libelleDel }}</span> -->
+    </ng-template>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img [src]="srca" style="height: 50px; width:50px;" class="img-responsive mon-icon" />&nbsp;
+                <h5 class="text-center">{{ message | translate }}</h5>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="row justify-content-center">
+            <button (click)="messageDialog=false;" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left"
+                class="p-button-secondary"></button>
+        </div>
+    </ng-template>
+</p-dialog>

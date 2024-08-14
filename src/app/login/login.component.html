@@ -1,167 +1,104 @@
 <html>
-<div class="grid-container">
-    <div class="grid-item">
-        <h6>République du Cameroun</h6>
-        <p id="tritre1">Paix - Travail - Patrie</p>
-        <div class="text-center" id="tritre2">
-            <span id="libelleFr"></span>
+
+<body>
+    <div class="contain">
+        <div class="d-flex justify-content-center h-100">
+            <!--  <div class="row">
+                <div class="col-2">
+                    <img src="assets/ismp.jpeg" style="height: 50px; width: 200px;" alt="">
+                </div>
+                <div class="col-10"></div>
+            </div> -->
+
+            <div class="card">
+                <div class="card-header text-center">
+
+                    <h2 class="fw-normal text-body-emphasis text-primary">
+                        {{ 'espaceenseignant' | translate}}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="assets/benyomo.png" style="height: 100%; width: 100%;" alt="">
+                        </div>
+                        <div class="col-6">
+                            <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                                <div class="form-group">
+                                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+                                        <span class="font-weight-bold">{{'Erreur de connexion:' | translate}}</span>
+                                        {{ errorMessage | translate }}
+                                    </div>
+                                </div>
+                                <div class="input-group form-group" style="margin-top: 10px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" name="email" [(ngModel)]="form.username"
+                                        required #username="ngModel" autocomplete="email" autofocus>
+                                </div>
+                                <div style="position: relative; margin-top: -10px; color:red" role="alert"
+                                    *ngIf="username.errors && f.submitted">
+                                    {{ 'Username is required' | translate }}
+                                </div>
+                                <div class="input-group form-group" style="margin-top: 10px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" name="password"
+                                        [(ngModel)]="form.password" required minlength="4" #password="ngModel"
+                                        autocomplete="current-password" id="passwordInputC">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i pTooltip="{{ 'showPass' | translate }}" tooltipPosition="top"
+                                                *ngIf="vuec==false" class="pi pi-eye mon-icon"
+                                                (click)="togglePasswordVisibilityCon()"></i>
+                                            <i pTooltip="{{ 'hidePass' | translate }}" tooltipPosition="top"
+                                                *ngIf="vuec==true" class="pi pi-eye-slash mon-icon"
+                                                (click)="togglePasswordVisibilityCon()"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div style="margin-top: -10px; color:red" role="alert"
+                                    *ngIf="password.errors && f.submitted">
+                                    <!-- <div *ngIf="password.errors.required">{{ 'requierdPassword' | translate }}</div>
+                                                        <div *ngIf="password.errors.minlength">
+                                                            {{ 'maxLenghtPass' | translate }}
+                                                        </div> -->
+                                </div>
+                                <div class="row align-items-center remember" style="margin-top:20px;">
+                                    <input type="checkbox" name="remember" id="remember">Se
+                                    souvenir de moi
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="submit" class="fadeIn btn login_btn"
+                                        value="{{ 'Se Connecter' | translate }}" id="connexion">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-link" routerLink="/resetpassword">
+                            <span class="text-primary">Mot de passe oublie?</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
-        <h6>Republic of Cameroon</h6>
-        <p id="tritre1">Peace - Work - Fatherland</p>
-        <div class="text-center " id="tritre2">
-            <span id="libelleEnglish"></span>
-        </div>
+</body>
+
+<!-- SPINNER DE CHARGEMENT DU TREETABLE -->
+<div class="progress-spinner" *ngIf="displaySpinner" style="z-index: 9999">
+    <div class="d-flex justify-content-center"> <p-progressSpinner styleClass="custom-spinner" strokeWidth="4"
+            animationDuration=".5s"></p-progressSpinner> </div>
+    <div class="d-flex justify-content-center affiche">
+        <h6 style="color: rgb(255, 255, 255); z-index: 999"> {{ "Chargement" | translate }} </h6>
     </div>
-    <div class="grid-item"></div>
-    <!-- <div class="grid-item"><img class="image" src="assets/img/amine.jpg" alt=""></div> -->
-    <div class="grid-item"><img class="image" [src]="urlImage" alt=""></div>
-    <div class="grid-item"></div>
 </div>
 
-<div class="grid-contain">
-    <div class="post1">
-        <!-- <h1 class="titre"> {{ 'Une approche plus' | translate }}<br>{{ 'Intelligente de Suivre le Courrier' | translate }}</h1> <br>
-          <p class="contenu">{{ 'Traçabilité,historisation, numérisation des pièces, sécurisation par Code Barre' | translate }}<br>
-          {{ 'Eléments clés de la Digitalisation' | translate }}</p> -->
-
-        <span id="slogan"></span>
-    </div>
-
-
-    <div class="div"> </div>
-
-    <div class="post2">
-        <img class="img2" src="assets/img/imag.png" alt="">
-        <p class="contenu2">{{ 'Désormais disponible sur tablettes et téléphone' | translate }}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </p>
-    </div>
-
-
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-
-            <!-- Tabs Titles -->
-            <div class="fadeIn first pt-3">
-
-
-                <h1 style="position: relative; top: -10px; font-size: 30px;"><span id="produit"></span></h1>
-                <br>
-                <p-selectButton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value"
-                    (click)="changeLang(value1)"></p-selectButton>
-                <br>
-            </div>
-
-
-            <!-- Login Form -->
-            <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                <div class="form-group">
-                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                        {{'Login failed:' | translate}} {{ errorMessage | translate }}
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="username" style="position: relative; margin-top: -20px;">{{ 'Username' | translate
-                        }}</label>
-                    <input style="border:1px black solid; margin-top: -10px;" type="text" class="form-control"
-                        name="username" [(ngModel)]="form.username" required #username="ngModel">
-                </div>
-                <div style="position: relative; margin-top: -10px; color:red" role="alert"
-                    *ngIf="username.errors && f.submitted">
-                    {{ 'Username is required' | translate }}
-                </div>
-                <div class="form-group">
-                    <label for="password">{{ 'Password' | translate }}</label>
-                    <input style="border:1px black solid; margin-top: -10px;" type="password" class="form-control"
-                        name="password" [(ngModel)]="form.password" required minlength="4" #password="ngModel">
-
-                    <!-- <div style="position: relative; margin-top: -10px; color:red" role="alert"
-                        *ngIf="password.errors && f.submitted">
-                        <div *ngIf="password.errors.required">{{ 'Password is required' | translate }}</div>
-                        <div *ngIf="password.errors.minlength">
-                            {{ 'Password must be at least 4 characters' | translate }}
-                        </div>
-                    </div> -->
-                </div>
-                <div class="form-group">
-                    <input type="submit" style="background-color: #2196F3; top:-10px; position: relative;"
-                        class="fadeIn fourth btn btn-primary" value="{{ 'Se Connecter' | translate }}" id="connexion">
-                </div>
-
-            </form>
-
-            <div id="formFooter">
-                <a class="underlineHover" href="#">{{ 'Mot de passe perdu?' | translate }}</a>
-            </div>
-
-        </div>
-        <!--  <div class="d-flex justify-content-center mb-4" style="position:relative; bottom:70px;"><b> {{ 'site web d’informations du ministére' | translate }}:</b>&nbsp; <a (click)="getSiteMinT()" href="#">www.mintransports.net</a> </div>-->
-    </div>
-
-
-
-
-
-
-
-
-
-
-    <div class="progress-spinner" *ngIf="displaySpinner">
-        <div class="d-flex justify-content-center">
-            <p-progressSpinner [style]="{width: '100px', height: '100px'}" styleClass="custom-spinner" strokeWidth="8"
-                fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
-        </div>
-    </div>
-
-    <!-- dialog erreur -->
-    <p-dialog header="{{ 'Erreur' | translate }}" [modal]="true" [(visible)]="displayError" [style]="{'width':'600px'}">
-        <ng-template pTemplate="body">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-danger">
-                            <i class="fas fa-times fa-fw me-3 text-danger"></i>
-                            {{errorMessage| translate}}
-                        </h6>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-
-        <ng-template pTemplate="footer">
-            <div class=" d-flex justify-content-center">
-                <button class="btn btn-sm btn-primary" (click)="closeError()">OK</button>
-            </div>
-        </ng-template>
-    </p-dialog>
-
-    <!-- dialog succès -->
-    <p-dialog header="{{ 'Succes' | translate }}" [modal]="true" [(visible)]="displaySucces"
-        [style]="{'width':'400px'}">
-
-        <ng-template pTemplate="body">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="text-success">
-                            <i class="fas fa-check fa-fw me-3 text-success"></i>
-                            {{succesMessage | translate }}
-                        </h6>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-
-        <ng-template pTemplate="footer">
-            <div class=" d-flex justify-content-center">
-                <button class="btn btn-sm btn-primary" (click)="closeSucces()">OK</button>
-            </div>
-        </ng-template>
-
-    </p-dialog>
+</html>

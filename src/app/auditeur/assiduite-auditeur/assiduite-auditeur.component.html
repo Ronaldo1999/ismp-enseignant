@@ -1,0 +1,24 @@
+<div class="container-fluid mt-5">
+
+    <div class="row">
+        <div class="col">
+
+            <div class="mt-2 position-relative p-5 text-muted bg-body border border-dashed rounded-5">
+                <h4 class="text-primary text-body-emphasis"> {{ 'assiduite' | translate}}</h4>
+            
+                <p class="fs-14 m-2"> {{ 'vous avez' | translate}}<span class="fs-16 text-warning p-1">
+                        {{absences.length}} </span> {{ 'absences non justifié' | translate}}</p>
+            
+                <ul class="list-group petit-detail" *ngFor="let ab of absences; let i = index">
+                    <li class="list-group-item d-flex justify-content-between align-items-center mt-1 border-danger">
+            
+                        <h6 class="text-body-emphasis"> {{ab.nomue}}</h6>
+                        <p class="fs-14"> {{ab.datejour | date : 'EEEE MMMM d y'}}</p>
+            
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

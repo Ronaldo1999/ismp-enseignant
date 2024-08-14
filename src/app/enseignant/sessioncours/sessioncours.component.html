@@ -1,0 +1,351 @@
+<div class="container-fluid texte" style="padding: -2%;">
+    <div class="row">
+        <div class="col d-flex justify-content-start"> </div>
+        <div class="col d-flex justify-content-center">
+            <h4 class="d-flex justify-content-center text-primary">Les Séssions d'évaluations par cours</h4>
+        </div>
+        <div class="col d-flex justify-content-end"> </div>
+        <hr>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <p-toolbar>
+        <ng-template pTemplate="left">
+            <!-- <span>Les sessions</span> -->
+        </ng-template>
+        <ng-template pTemplate="right">
+            <div class="col d-flex justify-content-end">
+                <button (click)="create()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                    label="{{ 'Créer des sessions pour tout les cours de la période' | translate }}" icon="pi pi-plus"
+                    iconPos="left" class="p-button-primary"></button>
+                &nbsp;&nbsp;
+                <button [style]="{ height: '35px' }" pButton pRipple type="button"
+                    label="{{ 'Actualiser' | translate }}" icon="pi pi-refresh" iconPos="left"
+                    class="p-button-secondary"></button>&nbsp;&nbsp;
+                <!--  <button (click)="create()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                    label="{{ 'Nouvelle séssion' | translate }}" icon="pi pi-plus" iconPos="left"
+                    class="p-button-primary"></button> -->
+            </div>
+        </ng-template>
+    </p-toolbar>
+
+
+    <div class="card sessionsnotation" style="margin-top: 1%;">
+        <div class="row mb-2 tit">
+            <span class="headspan">{{ "Paramètres de filtres" | translate }}</span>
+        </div>
+        <div class="row mb-2" style="padding: 13px;">
+            <div class="card cont bg-light">
+                <div class="row mb-2" style="margin-top: 1%;">
+                    <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ "Période académique" | translate }}<span
+                            class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <div class="col-sm-10 col-md-9 col-lg-9 col-xl-9">
+                        <p-dropdown [(ngModel)]="sessionCour.anneAccademiqueID"
+                            [style]="{ width: '100%', height: '40px' }"
+                            placeholder="Veuillez selectionner une période académique" [showClear]="true"
+                            [options]="periodeAcademiques" optionLabel="nomperio" optionValue="id" [filter]="true"
+                            filterBy="nomperio" [showClear]="true"
+                            (onChange)="parcoursAcademiqueList(sessionCour.anneAccademiqueID);">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item">
+                                    <span *ngIf="verifyLength(act.nomperio)" pTooltip="{{ act.nomperio }}"
+                                        tooltipPosition="top">
+                                        {{
+                                        defineDescription(act.nomperio) }}... </span>
+                                    <span *ngIf="verifyLength(act.nomperio) == false"> {{
+                                        act.nomperio
+                                        }}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ titPar |
+                        translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <div class="col-sm-10 col-md-9 col-lg-9 col-xl-9">
+                        <p-dropdown [(ngModel)]="sessionCour.parcourAccademiqueID"
+                            [style]="{ width: '100%', height: '40px' }"
+                            placeholder="Veuillez selectionner un parcour scolaire" [showClear]="true"
+                            [options]="parcoursAcademiques" optionLabel="nomparc" optionValue="id" [filter]="true"
+                            filterBy="nomparc" [showClear]="true"
+                            (onChange)="uniteEnseignementListByParcour(sessionCour.parcourAccademiqueID)">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item">
+                                    <span *ngIf="verifyLength(act.nomparc)" pTooltip="{{ act.nomparc }}"
+                                        tooltipPosition="top">
+                                        {{
+                                        defineDescription(act.nomparc) }}... </span>
+                                    <span *ngIf="verifyLength(act.nomparc) == false"> {{
+                                        act.nomparc }}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ "Cours ou U.E" |
+                        translate
+                        }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <div class="col-sm-10 col-md-9 col-lg-9 col-xl-9">
+                        <p-dropdown [(ngModel)]="sessionCour.courid" [style]="{ width: '100%', height: '40px' }"
+                            placeholder="Veuillez selectionner une unité d'enseignement" [showClear]="true"
+                            [options]="cours" optionLabel="nomue" optionValue="id" [filter]="true" filterBy="nomue"
+                            [showClear]="true" (onChange)="getAllSessionByNotationByCours(sessionCour.courid)">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item">
+                                    <span *ngIf="verifyLength(act.nomue)" pTooltip="{{ act.nomue }}"
+                                        tooltipPosition="top">
+                                        {{
+                                        defineDescription(act.nomue) }}... </span>
+                                    <span *ngIf="verifyLength(act.nomue) == false"> {{
+                                        act.nomue
+                                        }}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="card sessionsnotation">
+                        <div class="row mb-2 tit">
+                            <span class="headspan">{{ "Nouvelle session pour ce cour" | translate }}</span>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ "Session de base" |
+                                translate
+                                }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                            </label>
+                            <div class="col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                <p-dropdown [(ngModel)]="sessionCour2.idsession"
+                                    [style]="{ width: '100%', height: '40px' }"
+                                    placeholder="Veuillez selectionner une session de base" [showClear]="true"
+                                    [options]="allsessions" optionLabel="nom" optionValue="id" [filter]="true"
+                                    filterBy="nom" [showClear]="true">
+                                    <ng-template let-act pTemplate="item">
+                                        <div class="activite-item">
+                                            <span *ngIf="verifyLength(act.nom)" pTooltip="{{ act.nom }}"
+                                                tooltipPosition="top">
+                                                {{
+                                                defineDescription(act.nom) }}... </span>
+                                            <span *ngIf="verifyLength(act.nom) == false"> {{
+                                                act.nom
+                                                }}
+                                            </span>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div class="col-sm-10 col-md-2 col-lg-2 col-xl-2">
+                                <input type="number" class="form-control" [(ngModel)]="sessionCour2.poids"
+                                    placeholder="" [maxlength]="3" [max]="100">
+                            </div>
+                            <div class="col-sm-10 col-md-1 col-lg-1 col-xl-1">
+                                <button (click)="addSession()" [style]="{ height: '35px' }" pButton pRipple
+                                    type="button" icon="pi pi-save" class="p-button-primary"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <p-table [value]="sessionsCours" #fc [rows]="10" [paginator]="true"
+                        styleClass="p-datatable-sm p-datatable-gridlines"
+                        [globalFilterFields]="['id',  'nom', 'description']" responsiveLayout="scroll" [rowHover]="true"
+                        dataKey="id" [showCurrentPageReport]="true">
+                        <ng-template pTemplate="header">
+                            <tr class="texte">
+                                <th colspan="1" style="width: 5%; text-align: center;"> N° </th>
+                                <th colspan="1" style="width: 65%;"> {{ 'nom'|translate }}</th>
+                                <th colspan="1" style="width: 15%;"> {{ 'Poids'|translate }}</th>
+                                <th colspan="1" style="width: 15%;text-align: center;">Actions </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-i="rowIndex">
+                            <tr>
+                                <td style="text-align: center;">{{i+1}}</td>
+                                <td>{{getByID(item.idsession, allsessions).nom}}</td>
+                                <td>
+                                    <input class="form-control bg-light form-control-sm" type="number" placeholder="0"
+                                        style="border-color: white" value="{{ item.poids }}" [(ngModel)]="item.poids" />
+                                </td>
+                                <td style="text-align: center;">
+                                    <i (click)="delSes(i, sessionsCours)" class="pi pi-trash text-danger action-btn"
+                                        pTooltip="Supprimer" tooltipPosition="left"></i>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="summary">
+                            <div class="p-d-flex p-ai-center p-jc-between text-center">
+                                Poids total du cour {{totalPoid }}.
+                            </div>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-2">
+                        <button (click)="save()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                            label="{{ 'Enregistrer' | translate }}" icon="pi pi-save" iconPos="left"
+                            class="p-button-success"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="updateDialog" [modal]="true" [style]="{width: '1000px'}" [draggable]="true" [resizable]="false">
+    <ng-template pTemplate="header"> <span style="font-size: 22px;">{{libelle}}</span>
+    </ng-template>
+    <div class="modal-body">
+        <div class="row mb-2" style="padding: 13px;">
+            <div class="card cont bg-light">
+                <div class="row mb-2" style="margin-top: 1%;">
+                    <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ "Période académique" | translate }}<span
+                            class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <div class="col-sm-10 col-md-9 col-lg-9 col-xl-9">
+                        <p-dropdown [(ngModel)]="sessionCour.anneAccademiqueID"
+                            [style]="{ width: '100%', height: '40px' }"
+                            placeholder="Veuillez selectionner une période académique" [showClear]="true"
+                            [options]="periodeAcademiques" optionLabel="nomperio" optionValue="id" [filter]="true"
+                            filterBy="nomperio" [showClear]="true"
+                            (onChange)="parcoursAcademiqueList(sessionCour.anneAccademiqueID);">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item">
+                                    <span *ngIf="verifyLength(act.nomperio)" pTooltip="{{ act.nomperio }}"
+                                        tooltipPosition="top">
+                                        {{
+                                        defineDescription(act.nomperio) }}... </span>
+                                    <span *ngIf="verifyLength(act.nomperio) == false"> {{
+                                        act.nomperio
+                                        }}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ titPar |
+                        translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <div class="col-sm-10 col-md-9 col-lg-9 col-xl-9">
+                        <p-dropdown [(ngModel)]="sessionCour.parcourAccademiqueID"
+                            [style]="{ width: '100%', height: '40px' }"
+                            placeholder="Veuillez selectionner un parcour scolaire" [showClear]="true"
+                            [options]="parcoursAcademiques" optionLabel="nomparc" optionValue="id" [filter]="true"
+                            filterBy="nomparc" [showClear]="true"
+                            (onChange)="uniteEnseignementListByParcour(sessionCour.parcourAccademiqueID)">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item">
+                                    <span *ngIf="verifyLength(act.nomparc)" pTooltip="{{ act.nomparc }}"
+                                        tooltipPosition="top">
+                                        {{
+                                        defineDescription(act.nomparc) }}... </span>
+                                    <span *ngIf="verifyLength(act.nomparc) == false"> {{
+                                        act.nomparc }}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ "Cours ou U.E" |
+                        translate
+                        }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <div class="col-sm-10 col-md-9 col-lg-9 col-xl-9">
+                        <p-dropdown [(ngModel)]="sessionCour2.courid" [style]="{ width: '100%', height: '40px' }"
+                            placeholder="Veuillez selectionner une unité d'enseignement" [showClear]="true"
+                            [options]="cours" optionLabel="nomue" optionValue="id" [filter]="true" filterBy="nomue"
+                            [showClear]="true" (onChange)="getAllSessionByNotationByCours(sessionCour.courid)">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item">
+                                    <span *ngIf="verifyLength(act.nomue)" pTooltip="{{ act.nomue }}"
+                                        tooltipPosition="top">
+                                        {{
+                                        defineDescription(act.nomue) }}... </span>
+                                    <span *ngIf="verifyLength(act.nomue) == false"> {{
+                                        act.nomue
+                                        }}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ "Session de base" |
+                        translate
+                        }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <div class="col-sm-10 col-md-9 col-lg-9 col-xl-9">
+                        <p-dropdown [(ngModel)]="sessionCour2.idsession" [style]="{ width: '100%', height: '40px' }"
+                            placeholder="Veuillez selectionner une session de base" [showClear]="true"
+                            [options]="allsessions" optionLabel="nom" optionValue="id" [filter]="true" filterBy="nom"
+                            [showClear]="true" (onChange)="getAllSessionByNotationByCours(sessionCour.courid)">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item">
+                                    <span *ngIf="verifyLength(act.nom)" pTooltip="{{ act.nom }}" tooltipPosition="top">
+                                        {{
+                                        defineDescription(act.nom) }}... </span>
+                                    <span *ngIf="verifyLength(act.nom) == false"> {{
+                                        act.nom
+                                        }}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label class="col-sm-12 col-md-12 col-lg-3 col-xl-3">{{ "Poids pondéré" |
+                        translate
+                        }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <div class="col-sm-10 col-md-9 col-lg-9 col-xl-9">
+                        <input type="number" class="form-control" [(ngModel)]="sessionCour2.poids" placeholder=""
+                            [maxlength]="3" [max]="100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="row justify-content-center">
+            <button (click)="close()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left"
+                class="p-button-secondary"></button>
+
+        </div>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="messageDialog" [modal]="true" [style]="{width: '450px'}" [draggable]="true" [resizable]="false">
+    <ng-template pTemplate="header">
+        <span style="font-size: 22px;">{{ 'Attention !' | translate }}</span>
+        <!--  <span style="font-size: 14px; font-weight: 600; font-style: italic;">{{ libelleDel }}</span> -->
+    </ng-template>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img [src]="srca" style="height: 50px; width:50px;" class="img-responsive mon-icon" />&nbsp;
+                <h5 class="text-center">{{ message | translate }}</h5>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="row justify-content-center">
+            <button (click)="messageDialog=false;" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left"
+                class="p-button-secondary"></button>
+        </div>
+    </ng-template>
+</p-dialog>

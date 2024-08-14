@@ -497,12 +497,66 @@ body {
     background-color: #eeeeee;
 }
 
-.imac{
+.imac {
 
     text-align: center;
-   
+
 }
-.dateac{
+
+.dateac {
     text-align: right;
-    
+
+}
+
+.ronNav {
+    background-color: rgba(220, 224, 223, 0.893);
+    line-height: 1.5;
+}
+
+
+
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+
+
+.grise-element {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.icoinfo {
+    color: #06c;
+    font-size: 30px;
+}
+
+.viole {
+    background-color: rgba(240, 119, 143, 0.373);
+}
+
+.dan {
+    color: rgb(233, 24, 24);
+    font-size: 20px;
+}
+
+.notec {
+    color: rgb(233, 24, 24);
+    font-size: 12px;
+    font-style: italic;
+    float: right;
+    font-weight: 600;
 }

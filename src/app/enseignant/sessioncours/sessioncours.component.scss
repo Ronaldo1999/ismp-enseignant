@@ -1,0 +1,53 @@
+.headspan{
+  color: #06c; 
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px;
+  margin-left: 5px;
+}
+.sessionsnotation{
+  padding: 7px;
+  border-radius: 8px;
+}
+
+.fieldset{
+  border: 0.2px solid #e4e4e46c;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+label{
+  color: rgb(1, 46, 91); 
+  font-size: 15px;
+  font-weight: 600;
+}
+.msgr{
+  color: rgb(89, 88, 88); 
+  font-size: 15px;
+  font-weight: 600;
+}
+.cont{
+  margin-top: -2%; border: transparent;
+}
+
+.tit{
+  margin-top: -1%; margin-left: 5px;
+}
+.bg-dan{
+  background: rgba(249, 206, 203, 0.922);
+}
+
+.info{
+  background: rgba(215, 230, 248, 0.922);
+  border-left: 10px solid rgb(36, 140, 244); 
+  padding: 5px;
+  border-radius: 4px;
+  width: 600px;
+}
+.action-btn{
+  font-size: 22px;
+}
+
+.action-btn:hover{
+  cursor: pointer;
+}

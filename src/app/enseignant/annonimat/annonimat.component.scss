@@ -1,0 +1,177 @@
+.headspan{
+  color: #06c; 
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px;
+  margin-left: 5px;
+}
+.sessionsnotation{
+  padding: 7px;
+  border-radius: 8px;
+}
+
+.fieldset{
+  border: 0.2px solid #e4e4e46c;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+label{
+  color: rgb(1, 46, 91); 
+  font-size: 15px;
+  font-weight: 600;
+}
+.msgr{
+  color: rgb(89, 88, 88); 
+  font-size: 15px;
+  font-weight: 600;
+}
+.cont{
+ // border: transparent;
+ padding: 5px;
+}
+
+.tit{
+  margin-top: -1%; margin-left: 5px;
+}
+.bg-dan{
+  background: rgba(249, 206, 203, 0.922);
+}
+
+.info{
+  background: rgba(215, 230, 248, 0.922);
+  border-left:10px solid rgb(36, 140, 244); 
+  border-top: 0px solid rgb(36, 140, 244); 
+  border-right:0px solid rgb(36, 140, 244); 
+  border-bottom:0px solid rgb(36, 140, 244); 
+  padding: 5px;
+  border-radius: 4px;
+  width: 600px;
+}
+
+.selectionne{
+    background-color: #29d164d3;
+    padding: 5px;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.attente{
+    background-color: #b6b6b6d3;
+    padding: 5px;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+tr{
+  font-size: 13px;
+}
+.lign{
+  font-weight: 500; color: rgb(1, 46, 91);
+}
+.percen{
+  font-style: italic; color: brown; font-weight: 600;
+}
+.asavoir{
+  color: rgb(45, 45, 45); font-size: 18px; font-weight: bold; text-transform: uppercase;
+}
+.msginfo{
+  color: rgb(83, 83, 83); font-size: 14px;
+}
+.icoinfo{
+  float: right;margin-top: 2%;
+}
+.labh{
+  float: right; margin-top: 3%;
+}
+.ano{
+  padding: 5px;
+  background-color: #48bbf9f0;
+  color: #565454d3;
+  border-radius: 3px;
+  font-size: 14px; font-weight: 600;
+  text-transform: uppercase;
+}
+.nano{
+  padding: 5px;
+  background-color: #f48b35d3;
+  color: #3f3f3fd3;
+  border-radius: 3px;
+}
+
+/* CSS pour définir la hauteur des lignes d'un tableau PrimeNG */
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr {
+    height: 10px; /* Hauteur souhaitée pour les lignes du tableau */
+}
+
+.custom-scrollbar {
+    height: 30vw; /* Hauteur de la barre de défilement */
+    overflow-y: auto; /* Ajoute une barre de défilement verticale */
+    background-color: #f5f5f5; /* Couleur de fond de la barre de défilement */
+    position: relative;
+}
+
+.custom-scrollbar .scroll-content {
+    padding-right: 12px; /* Ajoute un espace pour la barre de défilement */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 10px; /* Largeur de la barre de défilement */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    // background-color: #007ad9; 
+    background-color: var(--primary-color);
+            opacity: 1;
+            transition: background-color .5s;
+
+            &:hover {
+                 cursor: pointer;
+                background-color: rgb(1, 46, 91);
+            }/* Couleur de la barre de défilement */
+}
+
+
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Ajustez la hauteur selon vos besoins */
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid rgb(1, 46, 91); /* Couleur du spinner */
+    border-radius: 50%;
+    width: 30px; /* Diamètre du spinner */
+    height: 30px; /* Diamètre du spinner */
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+::ng-deep .p-table-wrapper {
+    max-height: 300px; /* Hauteur maximale du tableau */
+    overflow-y: auto; /* Activer le défilement vertical */
+    scrollbar-width: thin; /* Largeur de la barre de défilement */
+    scrollbar-color: #3498db transparent; /* Couleur de la barre de défilement */
+}
+
+::ng-deep .p-table-wrapper::-webkit-scrollbar {
+    width: 8px; /* Largeur de la barre de défilement pour navigateurs WebKit */
+}
+
+::ng-deep .p-table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #3498db; /* Couleur du curseur de la barre de défilement pour navigateurs WebKit */
+}

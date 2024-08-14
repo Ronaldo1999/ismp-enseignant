@@ -1,0 +1,305 @@
+<div class="bg-light">
+    <h4 class="display-6 d-flex justify-content-center text-primary"> {{ 'fichedepresence' | translate }}</h4>
+</div>
+
+<div class="modal-body" style="margin-top: 1%;">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="card cont bg-light">
+                <div class="row mb-2" style="align-items: center;">
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label>{{ "periodea" | translate }}<span
+                                    class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                            <p-dropdown [ngClass]="{'grise-element': displaySpinner}"
+                                [(ngModel)]="courInitial.idperiode" [style]="{ width: '100%', height: '40px' }"
+                                placeholder="{{ 'vspa' | translate }}" [showClear]="true" [options]="periodeAcademiques"
+                                optionLabel="nomperio" optionValue="id" [filter]="true"
+                                filterBy="nomperio,anneedebut,anneefin" [showClear]="true"
+                                (onChange)="parcoursAcademiqueList(courInitial.idperiode); ">
+                                <ng-template let-act pTemplate="item">
+                                    <div pTooltip="{{ act.nomperio }}" tooltipPosition="top"
+                                        (click)="parcoursAcademiqueList(act.id)">
+                                        <i class="fa fa-calendar"></i>&nbsp;
+                                        <span>{{act.anneedebut}} - {{act.anneefin}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <label>{{ 'titPar' | translate }}<span
+                                class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                        <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [(ngModel)]="courInitial.idparcours"
+                            [style]="{ width: '100%', height: '40px' }" placeholder="{{ 'vsps' | translate }}"
+                            [showClear]="true" [options]="parcoursAcademiques" optionLabel="nomparc" optionValue="id"
+                            [filter]="true" filterBy="nomparc" [showClear]="true"
+                            (onChange)="uniteEnseignementByParcList(courInitial.idparcours); regroupementListByParcourList(courInitial.idparcours)">
+                            <ng-template let-act pTemplate="item">
+                                <div pTooltip="{{ act.nomparc }}" tooltipPosition="top"
+                                    (click)="uniteEnseignementByParcList(act.id); regroupementListByParcourList(act.id)">
+                                    <i class="fa fa-database"></i>&nbsp; ({{act.codeparc}})
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                    <div class="col-2">
+                        <label>{{ "Regroupement" | translate }}<span
+                                class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                        </label>
+                        <p-dropdown [ngClass]="{'grise-element': displaySpinner}"
+                            [(ngModel)]="courInitial.idregroupements"
+                            (onChange)="getRegroupement(courInitial.idregroupements)"
+                            [style]="{ width: '100%', height: '40px' }" placeholder="{{ 'vsur' | translate }}"
+                            [showClear]="true" [options]="regroupements" optionLabel="nomreg" optionValue="id"
+                            [filter]="true" filterBy="codereg, nomreg" [showClear]="true">
+                            <ng-template let-act pTemplate="item">
+                                <div class="activite-item" (click)="getRegroupement(courInitial.idregroupements)">
+                                    <i class="fa fa-object-ungroup" aria-hidden="true"></i>
+                                    <span> {{ act.nomreg }} </span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                    <div class="col-2">
+                        <label>{{ "courue" | translate }}<span
+                                class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                        <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [(ngModel)]="courInitial.idue"
+                            [style]="{ width: '100%', height: '40px' }" placeholder="{{ 'vsue' | translate }}"
+                            [showClear]="true" [options]="uniteEnseignements" optionLabel="nomue" optionValue="id"
+                            [filter]="true" filterBy="nomue" [showClear]="true" (onChange)="courProgrammeListByEns();">
+                            <ng-template let-act pTemplate="item">
+                                <div pTooltip="{{ act.nomue }}" tooltipPosition="top"
+                                    (click)="courProgrammeListByEns();">
+                                    <i class="fa fa-sticky-note"></i>&nbsp; ({{act.codeu}})
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                    <div class="col-2">
+                        <label>{{ "seance" | translate }}<span
+                                class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                        <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [(ngModel)]="courInitial.idcp"
+                            [style]="{ width: '100%', height: '40px' }" placeholder="{{ 'vsue' | translate }}"
+                            [showClear]="true" [options]="cours" optionLabel="libelleFr" optionValue="idcp"
+                            [filter]="true" filterBy="libelleFr" [showClear]="true"
+                            (onChange)="rechercher(); getCours(courInitial.idcp)">
+                            <ng-template let-act pTemplate="item" (click)="rechercher(); getCours(act.idcp)">
+                                <div pTooltip="{{ act.libelleFr }}" tooltipPosition="top">
+                                    <i class="fa-solid fa-clock"></i>&nbsp; ({{act.datejour| date : 'EEEE MMMM d y'}})
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                    <div class="col-1">
+                        <!-- <input type="number" class="form-control" name="" id="" [(ngModel)]="nbligne"> -->
+                    </div>
+                </div>
+                <div class="spinner-container" *ngIf="displaySpinner">
+                    <div class="spinner"></div>
+                    &nbsp;<span style="color: rgb(1, 46, 91); font-style: italic;">{{
+                        'Chargement'|translate }}</span>
+                </div>
+                <div class="custom-scrollbar">
+                    <div class="bg-light" *ngIf="courusage.ensnoms">
+                        <h6 class="d-flex justify-content-center text-primary"> {{ 'coursde' | translate
+                            }}{{courusage.ensnoms}}</h6>
+                    </div>
+                    <div class="scroll-content">
+                        <p-table #dt [value]="auditeurs" styleClass="p-datatable-sm p-datatable-striped"
+                            [globalFilterFields]="['nomue', 'codeu' ]" [rowHover]="true"
+                            [(selection)]="selectedAuditeurs">
+                            <ng-template pTemplate="header">
+                                <tr class="petit">
+                                    <th style="width:5%" class="text-center">#</th>
+                                    <th style="width:5%" class="text-center"> </th>
+                                    <th style="width:75%"> {{ 'nom auditeur' | translate}} </th>
+                                    <th style="width:10%"> {{ 'presence' | translate}} </th>
+                                    <th style="width:10%"> {{ 'retard' | translate}} </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-obj let-i="rowIndex">
+                                <tr [pSelectableRow]="obj" class="petit-detail">
+                                    <td class="text-center text-primary">{{i+1}}</td>
+                                    <td class="text-center"><p-tableCheckbox [value]="obj"
+                                            (click)="setPressence(1, obj.idauditeur)"></p-tableCheckbox>
+                                    </td>
+                                    <td class="lign">
+                                        <i class="fa fa-address-book-o" aria-hidden="true"></i>&nbsp;
+                                        <span>{{obj.nomauditeur}}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span *ngIf="obj.present" class="vert">Présent</span>
+                                        <span *ngIf="!obj.present" class="rouge">Abcent</span>
+
+                                    </td>
+                                    <td class="text-center">{{obj.retard}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-toolbar>
+        <ng-template pTemplate="left">
+            <div class="card info">
+                <div class="row">
+                    <div class="col-1 icoinfo"> <img src="assets/img/attention.png"
+                            style="height: 35px; width: 35px;" />
+                    </div>
+                    <div class="col-11">
+                        <span class="impo">{{ 'impo'|translate }}</span>&nbsp;
+                        <span class="imponote">{{ 'imponote'|translate }}&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+            &nbsp;&nbsp;
+            <button [disabled]="!courInitial.idcp" (click)="showQrCode()" [style]="{ height: '35px' }" pButton pRipple
+                type="button" label="{{ 'showQrCode' | translate }}" icon="fas fa-qrcode" iconPos="left"
+                class="p-button-secondary"></button>
+        </ng-template>
+        <ng-template pTemplate="right">
+            <div class="col d-flex justify-content-end">
+                <button [disabled]="!auditeurs.length" (click)="assiduiteInsert()" [style]="{ height: '35px' }" pButton
+                    pRipple type="button" label="{{ 'saveFichePresence' | translate }}" icon="pi pi-save" iconPos="left"
+                    class="p-button-success"></button>&nbsp;&nbsp;
+                <button (click)="rechercher()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                    label="{{ 'Rafraichir' | translate }}" icon="pi pi-refresh" iconPos="left"
+                    class="p-button-secondary"></button>
+            </div>
+        </ng-template>
+    </p-toolbar>
+</div>
+
+<p-dialog header="QrCode de la sceance" [modal]="false" [position]="position" [(visible)]="displayQRCore"
+    [style]="{'width':'600px'}" [resizable]="true">
+    <ng-template pTemplate="body">
+        <div class="container-fluid">
+            <div style="text-align: center;">
+                <qrcode [qrdata]="courusage.idcp+'/'+courusage.libelleFr" #qrcodeContainer>
+                </qrcode>
+                <!-- <img [src]="qrCodeImage" *ngIf="qrCodeImage" /> -->
+            </div>
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <div class="form-group">
+                        <label for="">Nombre de lignes</label>
+                        <input type="number" class="form-control" name="" id="" [(ngModel)]="nbligne">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class=" d-flex justify-content-center">
+            <button (click)="displayQRCore=false" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Fermer' | translate }}" icon="pi pi-times" iconPos="left"
+                class="p-button-secondary"></button>&nbsp;&nbsp;
+            <button [disabled]="!auditeurs.length" (click)="generatePDF(courusage.idcp+'/'+courusage.libelleFr, 0)"
+                [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Tirer sans les noms' | translate }}" icon="pi pi-print" iconPos="left"
+                class="p-button-secondary" pTooltip="Tirer la fiche de presence sans les noms"></button>&nbsp;&nbsp;
+
+            <button [disabled]="!auditeurs.length" (click)="generatePDF(courusage.idcp+'/'+courusage.libelleFr, 1)"
+                [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Tirer avec les noms' | translate }}" icon="pi pi-print" iconPos="left"
+                class="p-button-secondary" pTooltip="Tirer la fiche de presence vec les noms"></button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<p-dialog header="" [modal]="true" [(visible)]="displayError" [style]="{'width':'600px'}">
+    <ng-template pTemplate="body">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col">
+                    <img class="d-flex justify-content-center" style="width: 100px;height:100px"
+                        src="assets/img/icon-echec.jpeg" alt="">
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <h6 class="text-danger d-flex justify-content-center">
+                        {{errorMessage }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <div class=" d-flex justify-content-center">
+            <button class="btn btn-sm btn-block" (click)="closeError()">OK</button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<!-- dialog succès -->
+<p-dialog header="" [modal]="true" [(visible)]="displaySucces" [style]="{'width':'350px'}">
+
+    <ng-template pTemplate="body">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <img style="width: 100px;height:100px" src="assets/img/check-success.jpeg" alt="">
+            </div>
+            <div class="row d-flex justify-content-center">
+                <h6 class="text-success d-flex justify-content-center">
+                    {{succesMessage}}
+                </h6>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <div class=" d-flex justify-content-center">
+            <button class="btn btn-sm btn-block" (click)="closeSucces()">OK</button>
+        </div>
+    </ng-template>
+
+</p-dialog>
+
+<div class="progress-spinner" *ngIf="saveSpinner" style="z-index: 9999">
+    <div class="d-flex justify-content-center"> <p-progressSpinner styleClass="custom-spinner" strokeWidth="4"
+            animationDuration=".5s"></p-progressSpinner> </div>
+    <div class="d-flex justify-content-center affiche">
+        <h6 style="color: rgb(255, 255, 255); z-index: 999"> {{ "Chargement" | translate }} </h6>
+    </div>
+</div>
+
+<!-- 
+<div id="print-section">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="text-align: center">
+            <img style="width: 80px; height: 80px; margin-top: 2%" src="assets/ismp.jpeg" />
+        </div>
+        <div class="col-md-4"></div>
+    </div><br />
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="text-align: center">
+            <span><b>INSTITUT SUPÉRIEUR DE MANAGEMENT PUBLIC</b></span><br />
+            <span>BP 13719 Yaoundé (Cameroun) Tél.242 72 99 58/ 242 72 99 57</span><br />
+            <span><b>Site web :</b>www.ismpcameroun.com <b>Email</b>: contact@iaicameroun.com</span>
+        </div>
+        <div class="col-md-2"></div>
+    </div><br />
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="text-align: center">
+            <span><b>FICHE DE PRESENCE</b></span><br />
+            <span>pour le cour de <span style="color: #007ad9;">{{courusage.libelleFr}}</span>, du <span
+                    style="color: #007ad9;">{{courusage.datejour}}</span></span><br />
+        </div>
+        <div class="col-md-2"></div>
+    </div><br />
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8" style="text-align: center;">
+            <qrcode style="text-align: center;visibility: visible;" [qrdata]="courInitial.idcp + ' | ' + dateTime">
+            </qrcode>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div> -->

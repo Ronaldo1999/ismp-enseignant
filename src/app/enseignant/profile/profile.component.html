@@ -1,0 +1,221 @@
+<div class="moncontain">
+    <div class="container">
+        <section id="minimal-statistics">
+            <div class="row">
+                <div class="col-xl-12 col-sm-12 col-12">
+                    <div class="card shadow ele border-0" style="margin: 25px;">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <i class="fas fa-user-circle"
+                                        style="font-size: 40px;color: rgb(1, 46, 91);"></i><br>
+                                    <span class="font-weight-bold" style="font-size: 23px; color: rgb(1, 46, 91);">
+                                        {{'moncompte'|translate}}&nbsp;&nbsp;
+                                    </span>
+                                </div>
+                                <div class="progress mt-1 mb-0" style="height: 9px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"
+                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+
+                                <div class="container">
+                                    <fieldset class="fieldset">
+                                        <legend>
+                                            <i class="fas fa-user-cog" style="font-size: 30px;"></i>
+                                            &nbsp;{{ 'userinfos' | translate }}
+                                        </legend>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="">{{ 'email' | translate }}</label>
+                                                    <input type="text" readonly [(ngModel)]="user.email"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <!--  <div class="col-3">
+                                                <div class="form-group">
+                                                    <label for="">{{ 'password' | translate }}</label>
+                                                    <input type="text" [readOnly]="action=='view'"
+                                                        [(ngModel)]="user.password" class="form-control">
+                                                </div>
+                                            </div> -->
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="">{{ 'nom' | translate }}</label>
+                                                    <input type="text" [readOnly]="action=='view'"
+                                                        [(ngModel)]="user.name" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="">{{ 'telephone' | translate }}</label>
+                                                    <input type="text" [readOnly]="action=='view'"
+                                                        [(ngModel)]="user.telephone" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset *ngIf="action=='edit'" class="fieldset">
+                                        <legend><i class="fas fa-lock text-warning" style="font-size: 28px;"></i>&nbsp;
+                                            {{'changepassword' | translate }}
+                                        </legend>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <button (click)="openPassword()" [style]="{ height: '35px' }" pButton
+                                                    pRipple type="button" label="{{ 'changepassword' | translate }}"
+                                                    icon="fas fa-lock" iconPos="left" class="p-button-success"></button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="fieldset">
+                                        <legend><i class="fas fa-cogs" style="font-size: 30px;"></i>&nbsp;{{
+                                            'prefrences' | translate }}
+
+                                        </legend>
+                                        <hr>
+                                        <div class="row justify-content-center">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="">{{ 'globalang' | translate }}</label>
+                                                    <p-dropdown [disabled]="action=='view'" [(ngModel)]="langue"
+                                                        [style]="{ width: '100%', height: '40px' }" placeholder=" "
+                                                        [showClear]="true" [options]="stateOptions" optionLabel="label"
+                                                        optionValue="id" [showClear]="true"
+                                                        (onChange)="changeLang(langue)">
+                                                    </p-dropdown>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="row justify-content-center">
+                                        <div class="col-3" *ngIf="action=='view'">
+                                            <button (click)="editProfile('edit')" [style]="{ height: '35px' }" pButton
+                                                pRipple type="button" label="{{ 'editerprofile' | translate }}"
+                                                icon="fas fa-user-edit" iconPos="left"
+                                                class="p-button-primary"></button>
+                                        </div>
+                                        <div class="col-6" *ngIf="action=='edit'">
+                                            <button (click)="editProfile('view')" [style]="{ height: '35px' }" pButton
+                                                pRipple type="button" label="{{ 'canceledition' | translate }}"
+                                                icon="fas fa-times-circle" iconPos="left"
+                                                class="p-button-danger"></button>
+                                            &nbsp;&nbsp;
+                                            <button (click)="saveProfile()" [style]="{ height: '35px' }" pButton pRipple
+                                                type="button" label="{{ 'enregistrer' | translate }}" icon="fas fa-save"
+                                                iconPos="left" class="p-button-success"></button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<p-dialog [(visible)]="messageDialog" [modal]="true" [style]="{width: '450px'}" [draggable]="true" [resizable]="false">
+    <ng-template pTemplate="header">
+        <span style="font-size: 22px;">{{ title | translate }}</span>
+        <!--  <span style="font-size: 14px; font-weight: 600; font-style: italic;">{{ libelleDel }}</span> -->
+    </ng-template>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img [src]="srca" style="height: 50px; width:50px;" class="img-responsive mon-icon" />&nbsp;
+                <h5 class="text-center">{{ message | translate }}</h5>
+
+                <span *ngIf="mesact==1" class="text-center"
+                    style="font-size: 13px; color: rgb(1, 46, 91); font-weight: 600;">{{
+                    'vadvcoan' | translate }}</span>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="row justify-content-center">
+            <button *ngIf="mesact==1" class="btn btn-secondary btn-sm mx-2" (click)="deconnexion()"> <i
+                    class="fa fa-times-circle" aria-hidden="true"></i>&nbsp;&nbsp;{{ "Fermer" | translate }} </button>
+            <button *ngIf="mesact==2" class="btn btn-secondary btn-sm mx-2" (click)="messageDialog=false"> <i
+                    class="fa fa-times-circle" aria-hidden="true"></i>&nbsp;&nbsp;{{ "Fermer" | translate }} </button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+
+
+
+<!-- --------------------------------------------------------------------------------------------------------- -->
+<p-dialog [(visible)]="passwordDialog" [modal]="true" [style]="{width: '55vw'}" [draggable]="true" [resizable]="false">
+    <ng-template pTemplate="header">
+        <span style="font-size: 22px;">{{ 'changepassword' | translate }}</span>
+    </ng-template>
+    <div class="modal-body">
+        <div class="row">
+            <div class="card card-outline-secondary">
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="inputPasswordOld"> {{ 'currentpassword' | translate }}</label>
+                        <div class="row">
+                            <div class="col-10">
+                                <input [(ngModel)]="userPost.oldpassword" type="password" class="form-control"
+                                    id="inputPasswordOld" required="">
+                                <small class="p-invalid" style="color: red;" *ngIf="wrongpass">
+                                    {{ 'errorpassword' | translate }}</small>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i pTooltip="{{ 'showPass' | translate }}" tooltipPosition="top"
+                                            *ngIf="vuec==false" class="pi pi-eye mon-icon"
+                                            (click)="togglePasswordVisibilityCon()"></i>
+                                        <i pTooltip="{{ 'hidePass' | translate }}" tooltipPosition="top"
+                                            *ngIf="vuec==true" class="pi pi-eye-slash mon-icon"
+                                            (click)="togglePasswordVisibilityCon()"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPasswordNew"> {{ 'newpassword' | translate }}</label>
+                        <input [(ngModel)]="userPost.password" type="password" class="form-control"
+                            id="inputPasswordNew" required minlength="4" required="">
+                        <span class="form-text small text-muted">
+                            The password must be 8-20 characters, and must <em>not</em> contain spaces.
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPasswordNewVerify"> {{ 'verify' | translate }}</label>
+                        <input [(ngModel)]="repeatPass" type="password" class="form-control" id="inputPasswordNewVerify"
+                            required="">
+                        <span class="form-text small text-muted">
+                            {{ 'confirmpassword' | translate }}
+                        </span>
+                    </div>
+                    <div *ngIf="userPost.password==repeatPass" class="form-group">
+                        <button class="btn btn-success btn-lg float-right" (click)="changePassword()">
+                            {{ 'enregistrer' | translate}}</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<div class="progress-spinner" *ngIf="displaySpinner" style="z-index: 9999">
+    <div class="d-flex justify-content-center">
+        <p-progressSpinner styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
+    </div>
+    <div class="d-flex justify-content-center affiche">
+        <h6 style="color: rgb(255, 255, 255); z-index: 999">{{'intraite'|translate}}</h6>
+    </div>
+</div>

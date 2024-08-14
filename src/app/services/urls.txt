@@ -1,0 +1,112 @@
+CREATE DEFINER=`courrier`@`%` PROCEDURE `psReport_Certificat`(_engagementID VARCHAR(50) )
+BEGIN
+
+DECLARE _niveau INT;
+DECLARE v_finished INTEGER DEFAULT 0;
+DECLARE v_rubrique varchar(200); 
+DECLARE _description VARCHAR(500) DEFAULT ''''; 
+ 
+ 
+ 
+ DECLARE rubrique_cursor CURSOR FOR 
+SELECT CONCAT(SUBSTRING(RPAD(D.libelleFr,75,' '),1,10), '   [taux:', FORMAT(taux,2), '%]                 Mnt: ', FORMAT(montant, 0) ) as rubrique 
+FROM actejuridiquerubrique A INNER JOIN droits D ON A.droitID = D.droitID 
+WHERE idLinked = _engagementID; 
+
+
+
+ DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_finished = 1;
+ OPEN rubrique_cursor;
+ SET _description  = CONCAT('RUBRIQUES A LIQUIDER ', CHAR(13), CHAR(13)) ; 
+ get_rubrique: LOOP
+ FETCH rubrique_cursor INTO v_rubrique;
+	 IF v_finished = 1 THEN 
+	 LEAVE get_rubrique;
+ END IF;
+ 
+ SET _description = CONCAT(_description, CHAR(13), v_rubrique);
+ 
+ END LOOP get_rubrique;
+ CLOSE rubrique_cursor;
+
+
+
+
+SELECT IFNULL(AT,4) INTO _niveau FROM PRMTR_NIVEAUMAX;
+
+IF(_niveau = 5) THEN
+		BEGIN
+			SET @fromClause = CONCAT('
+			FROM engagement E INNER JOIN 
+            exercice EX ON E.millesime = EX.millesime INNER JOIN 
+            engagementtype ET ON E.typeID = ET.typeID INNER JOIN 
+            operationbudgetaire OP  ON E.tacheID = OP.tacheID INNER JOIN   
+            activite ST ON ST.activiteID = OP.activiteBudgetiseID INNER JOIN 
+            activite TA ON TA.activiteID = ST.activiteParentID INNER JOIN
+            activite AT ON AT.activiteID = TA.activiteParentID  INNER JOIN 
+            activite AC ON AC.activiteID = AT.activiteParentID  INNER JOIN 
+            activite PG ON PG.activiteID = AC.activiteParentID INNER JOIN 
+            compte CO ON OP.compteCode = Co.code AND AT.organisationID = CO.organisationID  INNER JOIN 
+			structure S ON OP.structureID = S.structureID LEFT OUTER JOIN 
+			agent AG ON E.gestionnaire = AG.matricule   LEFT OUTER JOIN 
+			sourcefinancement sf ON sf.financementID = OP.financementID',  ' WHERE engagementID = ''', _engagementID,'''');
+			
+        END;
+ELSEIF(_niveau = 4) THEN
+		BEGIN
+			SET @fromClause = CONCAT('
+            FROM engagement E INNER JOIN 
+            exercice EX ON E.millesime = EX.millesime INNER JOIN 
+            engagementtype ET ON E.typeID = ET.typeID INNER JOIN 
+            operationbudgetaire OP  ON E.tacheID = OP.tacheID INNER JOIN   
+            activite TA ON TA.activiteID = OP.activiteBudgetiseID INNER JOIN
+            activite AT ON AT.activiteID = TA.activiteParentID  INNER JOIN 
+            activite AC ON AC.activiteID = AT.activiteParentID  INNER JOIN 
+            activite PG ON PG.activiteID = AC.activiteParentID  INNER JOIN 
+            compte CO ON OP.compteCode = Co.code AND AT.organisationID = CO.organisationID  INNER JOIN 
+			structure S ON OP.structureID = S.structureID LEFT OUTER JOIN 
+			agent AG ON E.gestionnaire = AG.matricule   LEFT OUTER JOIN 
+			sourcefinancement sf ON sf.financementID = OP.financementID',  ' WHERE engagementID = ''', _engagementID,'''');
+
+        END;
+ELSEIF(_niveau = 3) THEN
+		BEGIN
+		SET @fromClause = CONCAT('
+			FROM engagement E INNER JOIN 
+            exercice EX ON E.millesime = EX.millesime INNER JOIN 
+            engagementtype ET ON E.typeID = ET.typeID INNER JOIN 
+            operationbudgetaire OP  ON E.tacheID = OP.tacheID INNER JOIN   
+            activite AT ON AT.activiteID = OP.activiteBudgetiseID INNER JOIN
+            activite AC ON AC.activiteID = AT.activiteParentID  INNER JOIN 
+            activite PG ON PG.activiteID = AC.activiteParentID INNER JOIN 
+            compte CO ON OP.compteCode = Co.code AND AT.organisationID = CO.organisationID INNER JOIN 
+			structure S ON OP.structureID = S.structureID LEFT OUTER JOIN 
+			agent AG ON E.gestionnaire = AG.matricule  LEFT OUTER JOIN 
+			sourcefinancement sf ON sf.financementID = OP.financementID ',  ' WHERE engagementID = ''', _engagementID,'''');
+
+        END;
+END IF;
+
+
+SET @requete = CONCAT('SELECT    CONCAT(YEAR(EX.dateDebut), '' '', PG.code, '' '', AC.code, '' '', S.code, '' '', Co.CompteCOde) AS imputation, S.code as arCodeArticle, 
+				                      CO.compteCode as neCodeNatureEco, E.numDossier AS numBon, E.montantTTC AS disponible, E.beneficiaire AS arLibelleFrancais, 
+				                      '''' AS arLibelleAnglais, '''' as orCode, '''' as pcCode, '''' AS code, ''CERTIFICAT D''','''ENGAGEMENT''',' AS naturePiece, 
+				                      ''CERTIFICAT D''','''ENGAGEMENT''',' AS designationActeDepense,''', _engagementID,''' AS codeBarre, CO.libelleFr as neLibelleFrancais, CO.libelleUs as neLibelleAnglais, 
+				                      '''' AS codeBanque, '''' AS codeAgence, '''' AS numCompte, '''' AS cleRib, 
+				                      '''' AS nomBanque, '''' AS nomAgence, '''' AS ville, OP.libelleFr as taLibelleFrancais, CONCAT(IFNULL(AT.code,''''), ''  '', AT.libelleFr) as atLibelleFrancais, 
+				                      AC.libelleFr as acLibelleFrancais, AC.code as acCodeLRFE, PG.libelleFr as pgLibelleFrancais, PG.code as pgCodeLRFE, E.numDossier as numCertificat, E.montantTTC as montantAutEngag, 
+						E.objet AS objet,  ''',_description, ''' AS description,
+						''AGENCE COMPTABLE'' AS pcLibelleFr,
+						CONCAT(IFNULL(AG.nom,''''),''  '',IFNULL(AG.prenom,'''') ) AS ordonnateur, 
+						ET.libelleFr AS bnProcedure, 
+						'''' as pfIndicateur, '''' as pfReference, '''' as pfCible, '''' as pfSourceVerif, '''' as pfSituationActuelle, sf.abbreviationFr as financement, s.Code as structureCode, YEAR(EX.dateDebut) as annee ', @fromClause ) ;
+                        
+
+
+PREPARE stmt1 FROM @requete;  
+EXECUTE stmt1;  
+
+DEALLOCATE PREPARE stmt1; 
+
+
+END

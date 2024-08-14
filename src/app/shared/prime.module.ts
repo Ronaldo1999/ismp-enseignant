@@ -1,5 +1,4 @@
-import { NgModule } from "@angular/core";
-
+import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
@@ -8,7 +7,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { BadgeModule } from "primeng/badge";
+import { BadgeModule } from 'primeng/badge';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
@@ -40,41 +39,47 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { FileUploadModule } from 'primeng/fileupload';
 import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+
+import { MenuModule } from 'primeng/menu';
+
+
+import { TreeModule } from 'primeng/tree';
+import { ChartModule } from 'primeng/chart';
+
 
 @NgModule({
-    imports:[
+    imports: [
         ButtonModule,
-        InputTextModule,
-        CheckboxModule,
-        RadioButtonModule,
         DialogModule,
         ConfirmDialogModule,
-        TimelineModule, 
-        CardModule, 
-        SelectButtonModule, 
-        BadgeModule, 
-        RadioButtonModule, 
-        AvatarModule, 
-        AvatarGroupModule, 
-        TabViewModule, 
-        TableModule, 
-        TreeTableModule, 
-        DropdownModule, 
-        InputNumberModule, 
-        InputTextareaModule, 
-        CheckboxModule, 
-        TooltipModule, 
-        ProgressSpinnerModule, 
-        CalendarModule, 
-        ProgressBarModule, 
-        SplitterModule, 
-        InputTextModule, 
-        ToolbarModule, 
-        MessagesModule, 
-        MessageModule, 
-        ColorPickerModule, 
-        VirtualScrollerModule, 
-        ContextMenuModule, 
+        TimelineModule,
+        CardModule,
+        SelectButtonModule,
+        BadgeModule,
+        RadioButtonModule,
+        AvatarModule,
+        AvatarGroupModule,
+        TabViewModule,
+        TableModule,
+        TreeTableModule,
+        DropdownModule,
+        InputNumberModule,
+        InputTextareaModule,
+        CheckboxModule,
+        TooltipModule,
+        ProgressSpinnerModule,
+        CalendarModule,
+        ProgressBarModule,
+        SplitterModule,
+        InputTextModule,
+        ToolbarModule,
+        MessagesModule,
+        MessageModule,
+        ColorPickerModule,
+        VirtualScrollerModule,
+        ContextMenuModule,
         AccordionModule,
         TagModule,
 
@@ -83,40 +88,41 @@ import { TagModule } from 'primeng/tag';
         MultiSelectModule,
         FileUploadModule,
         RatingModule,
+        SplitButtonModule,
+        TreeModule,
+        MenuModule,
+        ChartModule,
     ],
-    exports:[
+    exports: [
         ButtonModule,
-        InputTextModule,
-        CheckboxModule,
-        RadioButtonModule,
         DialogModule,
         ConfirmDialogModule,
-        TimelineModule, 
-        CardModule, 
-        SelectButtonModule, 
-        BadgeModule, 
-        RadioButtonModule, 
-        AvatarModule, 
-        AvatarGroupModule, 
-        TabViewModule, 
-        TableModule, 
-        TreeTableModule, 
-        DropdownModule, 
-        InputNumberModule, 
-        InputTextareaModule, 
-        CheckboxModule, 
-        TooltipModule, 
-        ProgressSpinnerModule, 
-        CalendarModule, 
-        ProgressBarModule, 
-        SplitterModule, 
-        InputTextModule, 
-        ToolbarModule, 
-        MessagesModule, 
-        MessageModule, 
-        ColorPickerModule, 
-        VirtualScrollerModule, 
-        ContextMenuModule, 
+        TimelineModule,
+        CardModule,
+        SelectButtonModule,
+        BadgeModule,
+        RadioButtonModule,
+        AvatarModule,
+        AvatarGroupModule,
+        TabViewModule,
+        TableModule,
+        TreeTableModule,
+        DropdownModule,
+        InputNumberModule,
+        InputTextareaModule,
+        CheckboxModule,
+        TooltipModule,
+        ProgressSpinnerModule,
+        CalendarModule,
+        ProgressBarModule,
+        SplitterModule,
+        InputTextModule,
+        ToolbarModule,
+        MessagesModule,
+        MessageModule,
+        ColorPickerModule,
+        VirtualScrollerModule,
+        ContextMenuModule,
         AccordionModule,
         TagModule,
 
@@ -125,9 +131,12 @@ import { TagModule } from 'primeng/tag';
         MultiSelectModule,
         FileUploadModule,
         RatingModule,
-        
+        SplitButtonModule,
+        ScrollPanelModule,
+        TreeModule,
+        MenuModule,
+        ChartModule,
     ],
-    providers:[ConfirmationService, MessageService,]
+    providers: [ConfirmationService, MessageService],
 })
-
-export class PrimeModule{}
+export class PrimeModule { }
