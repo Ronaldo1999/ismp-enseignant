@@ -62,6 +62,7 @@ export class ApiService {
 
 
   urlAuditeurListReg = ''
+  urlAuditeurListRegAll = ''
   urlAuditeurListByCp = ''
   urlAssiduiteInsert = ''
   urlAbsencesByAuditeurList = ''
@@ -234,6 +235,7 @@ export class ApiService {
     this.urlcourProgrammeListValideByEns = urlserveur + 'coursListByEnseignant2';
     this.urlNoteUEHistoAudi = urlserveur + 'noteUEHistoAudi';
     this.urlUeProgrammeListEns = urlserveur + 'ueProgrammeListByEns';
+    this.urlAuditeurListRegAll = urlserveur + 'auditeursListAll';
   }
 
   // --------------------- --------------------- --------------------- --------------------- --------------------- --------------------- --------------------- --------------------- ---------------------
@@ -347,6 +349,8 @@ export class ApiService {
 
   uniteEnseignementListByParcour(id: number) { return this.http.get(this.urlUniteEnseignementByParc + '/' + id); }
   auditeursListByReg(id: number) { return this.http.get(this.urlAuditeurListReg + '/' + id); }
+
+  auditeursListAll(): Observable<any>  { return this.http.get(this.urlAuditeurListRegAll); }
 
   auditeursNoteList(regid: number, ueid: number, sessionid: number) {
     return this.http.get(this.urlAuditeurList + '/' + regid + '/' + ueid + '/' + sessionid);

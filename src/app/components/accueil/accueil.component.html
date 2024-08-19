@@ -1,0 +1,127 @@
+<div class="d-flex" id="wrapper">
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light border-bottom ronNav fixed-top">
+            <div class="container-fluid">
+                <!-- <span id="sidebarToggle"><i>menu</i></span> -->
+                <div class="text-left">
+                    <i class="fas fa-user-circle" style="height: 40px; width: 40px; color: rgb(1, 46, 91);"></i>
+                    <span style="font-weight: 600; text-transform: uppercase">{{ user.name }}</span>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item element" routerLink="/accueil" (click)="toggleStatus('accueil')">
+                            <a class="nav-link" [ngClass]="status == 'accueil' ? 'activef' : ' '">
+                                <i class="fa fa-home" [ngClass]="status == 'accueil' ? 'icone2' : 'icone'"></i> &nbsp;
+                                <span [ngClass]="status == 'accueil' ? 'icone2' : 'icone'">{{
+                                    "Accueil" | translate }}</span>
+                            </a>
+                        </li>&nbsp;
+
+                        <li class="nav-item element" routerLink="assiduite" (click)="toggleStatus('assiduite')">
+                            <a class="nav-link" [ngClass]="status == 'assiduite' ? 'activef' : ' '">
+                                <i class="fas fa-calendar-check"
+                                    [ngClass]="status == 'assiduite' ? 'icone2' : 'icone'"></i> &nbsp;
+                                <span [ngClass]="status == 'assiduite' ? 'icone2' : 'icone'">{{
+                                    "Assiduite" | translate }}</span>
+                            </a>
+                        </li>&nbsp;
+                        <li class="nav-item dropdown element">
+                            <a class="nav-link dropdown-toggle element" (click)="toggleStatus('Notations')" href="#" role="button" pTooltip="{{ 'Notations'|translate }}" tooltipPosition="left" data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{'activef':status == 'notation-individuelles'|| status == 'notation-anonymes'|| status == 'notation-validation'|| status == 'Notations'}"> 
+                                <i [ngClass]="{'icone2':status == 'notation-individuelles'|| status == 'notation-anonymes'|| status == 'notation-validation'|| status == 'Notations'}" class="fas fa-copy"></i> 
+                                &nbsp;
+                                <span [ngClass]="status == 'notation-individuelles'|| status == 'notation-anonymes'|| status == 'notation-validation'|| status == 'Notations' ? 'icone2' : 'icone'">{{
+                                    "Notations" | translate }}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end text-small">
+                                <li routerLink="/accueil/notation-individuelles" (click)="toggleStatus('notation-individuelles')" [ngClass]="status == 'notation-individuelles' ? 'active' : ' '">
+                                    <span class="dropdown-item"> <i class="fas fa-sticky-note"></i>&nbsp;{{'notation-individuelles' | translate}} </span> 
+                                </li>
+                                <li routerLink="/accueil/notation-anonymes" (click)="toggleStatus('notation-anonymes')" [ngClass]="status == 'notation-anonymes' ? 'active' : ' '"> 
+                                    <span class="dropdown-item"><i class="pi pi-file"></i>&nbsp; {{'notation-anonymes' | translate}} </span> 
+                                </li>
+                                <li routerLink="/accueil/notation-validation" (click)="toggleStatus('notation-validation')" [ngClass]="status == 'notation-validation' ? 'active' : ' '"> 
+                                    <span class="dropdown-item"><i class="pi pi-check-square"></i>&nbsp; {{'notation-validation' | translate}} </span> 
+                                </li>
+                            </ul>
+                        </li>
+                        &nbsp;
+                        <li class="nav-item element" routerLink="soutenances" (click)="toggleStatus('soutenances')">
+                            <a class="nav-link" [ngClass]="status == 'soutenances' ? 'activef' : ' '">
+                                <i class="fas fa-chalkboard-teacher"
+                                    [ngClass]="status == 'soutenances' ? 'icone2' : 'icone'"></i>
+                                &nbsp;
+                                <span [ngClass]="status == 'soutenances' ? 'icone2' : 'icone'">{{
+                                    "soutenances" | translate }}</span>
+                            </a>
+                        </li>&nbsp;
+
+                        <li class="nav-item element" routerLink="/accueil/devoirs" (click)="toggleStatus('devoirs')">
+                            <a pTooltip="{{ 'coursetressource'|translate }}" tooltipPosition="top" class="nav-link"
+                                [ngClass]="status == 'devoirs' ? 'activef' : ' '">
+                                <i class="fa-solid fa-clock" [ngClass]="status == 'devoirs' ? 'icone2' : 'icone'"></i>
+                                &nbsp;
+                                <span [ngClass]="status == 'devoirs' ? 'icone2' : 'icone'">{{
+                                    "Cours" | translate }}</span>
+                            </a>
+                        </li>&nbsp;
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle element" href="#" role="button" pTooltip="{{ 'changeLang'|translate }}" tooltipPosition="left" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-language"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-end text-small">
+                                <li [ngClass]="langue === 'fr' ? 'active' : 'en'" (click)="changeLang('fr')"> <span class="dropdown-item"> {{'francais' | translate}} </span> </li>
+                                <li [ngClass]="langue === 'en' ? 'active' : 'fr'" (click)="changeLang('en')"> <span class="dropdown-item"> {{'anglais' | translate}} </span> </li>
+                            </ul>
+                        </li>&nbsp;
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle element" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{'activef':status == 'moncompte'}"  pTooltip="{{ 'monProfil'|translate }}" tooltipPosition="left">  
+                                <i [ngClass]="{'icone2':status == 'moncompte'}" class="fas fa-user-cog"></i> 
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end text-small">
+                                <li routerLink="moncompte" (click)="toggleStatus('moncompte')" [ngClass]="status == 'moncompte' ? 'active' : ' '">
+                                    <span class="dropdown-item"> <i class="fas fa-user"></i>&nbsp;{{'moncompte' | translate}} </span> 
+                                </li>
+                                <hr class="dropdown-divider mb-1">
+                                <li routerLink="uniteDoeuvre" (click)="logOut()"> 
+                                    <span class="dropdown-item"> <i class="fas fa-power-off"></i>&nbsp;{{'Logout' | translate}} </span> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div style="margin-top: 1.3%; padding: 3%">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<!-- logout -->
+<p-dialog header="Deconnexion" [modal]="true" [(visible)]="logoutDialog" [style]="{ width: '25vw' }" [modal]="true"
+    [closable]="false" [draggable]="true" [resizable]="true">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img src="assets/img/deconnexion.png" style="height: 70px; width:70px;"
+                    class="img-responsive mon-icon" />&nbsp;<h4 class="text-center text-danger"
+                    style="font-size: 20px; font-weight: 700; color: red">{{ "deconnecteQuest" | translate }}</h4>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="row justify-content-center">
+            <button (click)="close()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Non' | translate }}" icon="pi pi-times" iconPos="left"
+                class="p-button-secondary"></button>&nbsp;&nbsp;
+            <button (click)="logout()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Oui' | translate }}" icon="pi pi-sign-out" iconPos="right" class="p-button-danger"></button>
+        </div>
+    </ng-template>
+</p-dialog>

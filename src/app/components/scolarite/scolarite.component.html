@@ -1,0 +1,754 @@
+
+<div class="bg-light">
+    <h4 class="display-6 d-flex justify-content-center text-primary"> {{ 'Tableau de board statistique' | translate }} </h4>
+</div>
+
+<div class="modal-body">
+    <div class="row mt-1">
+        <p-tabView styleClass="tabview-custom">
+            <p-tabPanel>
+                <ng-template pTemplate="header">
+                    <span>
+                        <label>{{ "EFFECTIFS" | translate }}</label>
+                    </span>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="corp bg-light">
+                        <div class="row">
+                            <label>{{ "Récapitulatif global" | translate }}</label>
+                            <hr style="margin-top: -0.2%; font-weight: 600;">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span style="font-size: 20px; font-weight: 500;">{{'Éffectif total'|translate}}</span>
+                                            <span style="font-size: 50px;">{{stat.total}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span style="font-size: 20px; font-weight: 500;">{{'Section anglophone'|translate}}</span>
+                                            <span style="font-size: 50px;">{{stat.anglo}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span style="font-size: 20px; font-weight: 500;">{{'Section francophone'|translate}}</span>
+                                            <span style="font-size: 50px;">{{stat.franco}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span style="font-size: 20px; font-weight: 500;">{{'Garçons'|translate}}</span>
+                                            <span style="font-size: 50px;">{{stat.boys}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span style="font-size: 20px; font-weight: 500;">{{'Filles'|translate}}</span>
+                                            <span style="font-size: 50px;">{{stat.filles}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Section anglophone -->
+                        <div class="row mt-1">
+                            <label><span style="font-size: 30px; font-weight: 900;">A</span> {{ "Section anglophone" | translate }}</label>
+                            <hr style="margin-top: -0.2%; font-weight: 600;">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Éffectif total'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.anglo}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Filles'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.anglof}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Garçons'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.anglob}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Pre-nursy'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.anglopn}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.anglopnb}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.anglopnf}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Nursy 1'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.anglon1}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.anglon1b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.anglon1f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Nursy 2'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.anglon2}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.anglon2b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.anglon2f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Class 1'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.angloc1}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc1b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc1f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Class 2'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.angloc2}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc2b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc2f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Class 3'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.angloc3}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc3b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc3f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Class 4'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.angloc4}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc4b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc4f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Class 5'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.angloc5}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc5b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc5f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Class 6'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.angloc6}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc6b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.angloc6f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <label><span style="font-size: 30px; font-weight: 900;">F</span> {{ "Section Francophone" | translate }}</label>
+                            <hr style="margin-top: -0.2%; font-weight: 600;">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Éffectif total'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.franco}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Filles'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francof}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Garçons'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francob}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Petite Section'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francopn}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francopnb}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francopnf}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Moyenne Section'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francon1}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francon1b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francon1f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'Grande Section'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francon2}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francon2b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francon2f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'SIL'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francoc1}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc1b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc1f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'CP'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francoc2}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc2b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc2f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'CE1'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francoc3}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc3b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc3f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'CE2'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francoc4}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc4b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc4f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'CM1'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francoc5}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc5b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc5f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card recrutement" style="padding: 10px;">
+                                        <div class="row justify-content-center text-center">
+                                            <span>{{'CM2'|translate}}</span>
+                                            <span style="font-size: 30px;">{{stat.francoc6}}</span>
+                                        </div>
+                                        <hr style="margin-top: -0.2%; font-weight: 600;">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-male boy"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc6b}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row justify-content-center text-center">
+                                                    <i class="fas fa-female fille"></i>
+                                                    <span style="font-size: 20px;">{{stat.francoc6f}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                
+            </p-tabPanel>
+            <p-tabPanel>
+                <ng-template pTemplate="header">
+                    <span>
+                        <label>{{ "RECOUVREMENTS" | translate }}</label>
+                    </span>
+                </ng-template>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
+
+<p-dialog [(visible)]="versementDialog" [modal]="true" [style]="{width: '60vw'}" [draggable]="true" [resizable]="false">
+    <ng-template pTemplate="header">
+        <span style="font-size: 22px;">{{ 'Historique des actions sur cette note' | translate }}</span>
+    </ng-template>
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group">
+                <label>{{ "periodea" | translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                </label>
+                <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [disabled]="action=='view'"
+                    [(ngModel)]="versement.anneeacademeiqueID" [style]="{ width: '100%', height: '40px' }"
+                    placeholder="{{ 'vspa' | translate }}" [showClear]="true" [options]="periodeAcademiques"
+                    optionLabel="nomperio" optionValue="id" [filter]="true" filterBy="nomperio" [showClear]="true"
+                    (onChange)="parcoursAcademiqueList(versement.anneeacademeiqueID); ">
+                    <ng-template let-act pTemplate="item">
+                        <div pTooltip="{{ act.nomperio }}" tooltipPosition="top"
+                            (click)="parcoursAcademiqueList(act.id)">
+                            <i class="fa fa-calendar"></i>&nbsp;
+                            <span>{{act.anneedebut}} - {{act.anneefin}}</span>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="form-group">
+                <label>{{ 'titPar' | translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                </label>
+                <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [disabled]="action=='view'"
+                    [(ngModel)]="versement.parcoursacademeiqueID" [style]="{ width: '100%', height: '40px' }"
+                    placeholder="{{ 'vsps' | translate }}" [showClear]="true" [options]="parcoursAcademiques"
+                    optionLabel="nomparc" optionValue="id" [filter]="true" filterBy="nomparc" [showClear]="true"
+                    (onChange)="ueProgrammeListByEns(versement.parcoursacademeiqueID); regroupementListByParcourList(versement.parcoursacademeiqueID)">
+                    <ng-template let-act pTemplate="item">
+                        <div pTooltip="{{ act.nomparc }}" tooltipPosition="top"
+                            (click)="ueProgrammeListByEns(act.id); regroupementListByParcourList(act.id)">
+                            <i class="fa fa-database"></i>&nbsp; ({{act.codeparc}})
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+
+        </div>
+        <div class="row mt-1">
+            <div class="form-group">
+                <label>{{ "Regroupement" | translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                </label>
+                <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [disabled]="action=='view'"
+                    [(ngModel)]="versement.regroupementID" [style]="{ width: '100%', height: '40px' }"
+                    placeholder="{{ 'vsur' | translate }}" [showClear]="true" [options]="regroupements"
+                    optionLabel="nomreg" optionValue="id" [filter]="true" filterBy="codereg, nomreg" [showClear]="true"
+                    (onChange)="auditeursList();">
+                    <ng-template let-act pTemplate="item">
+                        <div class="activite-item" (click)="auditeursList();">
+                            <i class="fa fa-object-ungroup" aria-hidden="true"></i>
+                            <span> {{ act.nomreg }} </span>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+
+        </div>
+        <div class="row mt-1">
+            <div class="col-11">
+                <div class="form-group">
+                    <label>{{ "Elève" | translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <p-dropdown [ngClass]="{'grise-element': displaySpinner}" [disabled]="action=='view'"
+                        [(ngModel)]="versement.auditeurID" [style]="{ width: '100%', height: '40px' }"
+                        placeholder="{{ 'vsau' | translate }}" [showClear]="true" [options]="auditeurs"
+                        optionLabel="nom" optionValue="id" [filter]="true" filterBy="nom, prenom" [showClear]="true">
+                        <ng-template let-act pTemplate="item">
+                            <div class="activite-item" (click)="auditeursList();">
+                                <i class="fa fa-object-ungroup" aria-hidden="true"></i>
+                                <span> {{ act.nomreg }} </span>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="col-1">
+                <button [style]="{ height: '35px' }" pButton pRipple type="button" icon="fas fa-plus-circle"
+                    iconPos="left" class="p-button-secondary"></button>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="form-group">
+                <label>{{ "partieversante" | translate }}<span
+                        class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                <input type="text" [(ngModel)]="versement.partieversante" class="form-control">
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="form-group">
+                <label>{{ "objetVersement" | translate }}<span
+                        class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                <textarea type="text" [(ngModel)]="versement.objet" class="form-control" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>{{ "telpv" | translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <input type="tel" [(ngModel)]="versement.telpv" class="form-control">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label>{{ "adressepv" | translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <input type="text" [(ngModel)]="versement.adressepv" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>{{ "montant" | translate }}<span class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span>
+                    </label>
+                    <input type="number" [(ngModel)]="versement.montant" class="form-control">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label>{{ "dateversement" | translate }}<span
+                            class="text-danger champ-obligatoire">&nbsp;&nbsp;*</span> </label>
+                    <input type="date" [(ngModel)]="versement.dateversement" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="row justify-content-center">
+            <button (click)="versementDialog=false" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left"
+                class="p-button-secondary"></button>&nbsp;&nbsp;
+            <button (click)="facture()" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Enregistrer' | translate }}" icon="fas fa-save" iconPos="left"
+                class="p-button-success"></button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+<p-dialog class="mon-dialogue" [(visible)]="printDialog" [modal]="true" [style]="{ width: '80vw', height: '80vw' }"
+    [draggable]="true" [resizable]="true" [closable]="false">
+    <iframe *ngIf="pdfData" [src]="pdfData" width="100%" height="100%"></iframe>
+    <ng-template pTemplate="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <span>PREVISUALISATION DE LA FACTURE</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="row justify-content-center">
+            <button (click)="printDialog=false;" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" class="p-button-secondary"></button>&nbsp;
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+<p-dialog [(visible)]="messageDialog" [modal]="true" [style]="{width: '450px'}" [draggable]="true" [resizable]="false">
+    <ng-template pTemplate="header">
+        <span style="font-size: 22px;">{{ title | translate }}</span>
+        <!--  <span style="font-size: 14px; font-weight: 600; font-style: italic;">{{ libelleDel }}</span> -->
+    </ng-template>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img [src]="srca" style="height: 50px; width:50px;" class="img-responsive mon-icon" />&nbsp;
+                <h5 class="text-center">{{ message | translate }}</h5>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="row justify-content-center">
+            <button (click)="messageDialog=false;" [style]="{ height: '35px' }" pButton pRipple type="button"
+                label="{{ 'Fermer' | translate }}" icon="fas fa-times-circle" iconPos="left"
+                class="p-button-secondary"></button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+
+<!-- SPINNER DE CHARGEMENT DU TREETABLE -->
+<div class="progress-spinner" *ngIf="displayGSpinner" style="z-index: 9999">
+    <div class="d-flex justify-content-center"> <p-progressSpinner styleClass="custom-spinner" strokeWidth="4"
+            animationDuration=".5s"></p-progressSpinner> </div>
+    <div class="d-flex justify-content-center affiche">
+        <h6 style="color: rgb(255, 255, 255); z-index: 999"> {{ "Chargement" | translate }} </h6>
+    </div>
+</div>

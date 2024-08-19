@@ -2,6 +2,7 @@ export class Anonymat {
     ideva!: number;
     idaudi!: number;
     idue!: number;
+    idreg!: number;
     anonymat!: string;
 }
 

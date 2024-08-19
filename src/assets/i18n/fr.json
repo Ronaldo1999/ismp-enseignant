@@ -1,4 +1,9 @@
 {
+  "telpv": "Téléphone du versant",
+  "adressepv": "Adresse du versant",
+  "dateversement": "Date du versement",
+  "objetVersement": "Objet du versement",
+  "partieversante": "Partie verssante",
   "notation-individuelles": "Notes individuelles et de groupe",
   "notation-anonymes": "Notes d'examens",
   "notation-validation": "Validation des notes",
@@ -144,6 +149,7 @@
   "vspa": "Veuillez selectionner une période académique",
   "vsps": "Veuillez selectionner un parcour scolaire",
   "vsue": "Veuillez selectionner une unité d'enseignement",
+  "vsau": "Veuillez selectionner un auditeur svp !",
   "sessionevaluation": "Session d'evaluation",
   "npsc": "Pondérée / 100",
   "titPar": "Parcours académique",

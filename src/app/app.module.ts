@@ -29,35 +29,31 @@ import { DialogModule } from 'primeng/dialog';
 import { PrimeModule } from './shared/prime.module';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ConfirmationService } from 'primeng/api';
-import { AccueilComponent } from './accueil/accueil.component';
-import { CourListComponent } from './auditeur/cour-list/cour-list.component';
-import { NotesListComponent } from './auditeur/notes-list/notes-list.component';
-import { ScolariteComponent } from './auditeur/scolarite/scolarite.component';
-import { EvaluerCourComponent } from './auditeur/evaluer-cour/evaluer-cour.component';
-import { LoginComponent } from './login/login.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
+import { LoginComponent } from './components/login/login.component';
 import { SplitterModule } from 'primeng/splitter';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { AssiduiteComponent } from './enseignant/assiduite/assiduite.component';
-import { AssiduiteAuditeurComponent } from './auditeur/assiduite-auditeur/assiduite-auditeur.component';
-import { SoutenanceAuditeurComponent } from './auditeur/soutenance-auditeur/soutenance-auditeur.component';
-import { DevoirComponent } from './enseignant/devoir/devoir.component';
-import { NotationComponent } from './enseignant/notation/notation.component';
-import { SessionComponent } from './enseignant/session/session.component';
-import { SessioncoursComponent } from './enseignant/sessioncours/sessioncours.component';
-import { SoutenanceComponent } from './enseignant/soutenance/soutenance.component';
-import { NoteanonymeComponent } from './enseignant/noteanonyme/noteanonyme.component';
-import { AnnonimatComponent } from './enseignant/annonimat/annonimat.component';
+import { AssiduiteComponent } from './components/assiduite/assiduite.component';
+import { DevoirComponent } from './components/devoir/devoir.component';
+import { NotationComponent } from './components/notation/notation.component';
+import { SessionComponent } from './components/session/session.component';
+import { SessioncoursComponent } from './components/sessioncours/sessioncours.component';
+import { SoutenanceComponent } from './components/soutenance/soutenance.component';
+import { NoteanonymeComponent } from './components/noteanonyme/noteanonyme.component';
+import { AnnonimatComponent } from './components/annonimat/annonimat.component';
 
-import { NoteSyntheseComponent } from './enseignant/notesynthese/notesynthese.component';
-import { NotevalidationComponent } from './enseignant/notevalidation/notevalidation.component';
-import { ProfileComponent } from './enseignant/profile/profile.component';
-import { WelcomeComponent } from './enseignant/welcome/welcome.component';
+import { NoteSyntheseComponent } from './components/notesynthese/notesynthese.component';
+import { NotevalidationComponent } from './components/notevalidation/notevalidation.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NgxPrintModule } from 'ngx-print';
-import { ResetpasswordComponent } from './enseignant/resetpassword/resetpassword.component';
-import { NumberInputDirective } from './enseignant/number-input-directive.directive';
-import { AudihomeworksComponent } from './enseignant/audihomeworks/audihomeworks.component';
-import { AssiduiteDfsrComponent } from './enseignant/assiduite-dfsr/assiduite-dfsr.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { NumberInputDirective } from './components/number-input-directive.directive';
+import { AudihomeworksComponent } from './components/audihomeworks/audihomeworks.component';
+import { AssiduiteDfsrComponent } from './components/assiduite-dfsr/assiduite-dfsr.component';
+import { NumberToWordsService } from './services/number-to-words.service';
+import { ScolariteComponent } from './components/scolarite/scolarite.component';
 
 
 
@@ -75,10 +71,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppComponent,
     LoginComponent,
     AccueilComponent,
-    CourListComponent,
-    NotesListComponent,
     ScolariteComponent,
-    EvaluerCourComponent,
     SoutenanceComponent,
     DevoirComponent,
     SessionComponent,
@@ -86,9 +79,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SessioncoursComponent,
     AssiduiteComponent,
     AssiduiteDfsrComponent,
-    AssiduiteAuditeurComponent,
-    SoutenanceAuditeurComponent,
-
     NoteanonymeComponent,
     AnnonimatComponent,
     NoteSyntheseComponent,
@@ -133,7 +123,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       useFactory: initConfig,
       deps: [ConfigService],
       multi: true,
-    },
+    },NumberToWordsService
   ],
   bootstrap: [AppComponent]
 })
